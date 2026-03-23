@@ -10,7 +10,7 @@ auto = "auto"
 linker = "isolated"
 
 minimumReleaseAge = 129600
-minimumReleaseAgeExcludes = ["@types/bun", "typescript"]
+minimumReleaseAgeExcludes = ["@types/bun", "typescript", "@sourcegraph/amp"]
 
 [install.cache]
 disable = false
