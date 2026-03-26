@@ -50,6 +50,11 @@
       target = ".kiro";
     };
 
+    agents = {
+      source = ../../config/agents;
+      target = "config/.agents";
+    };
+
     hushlogin = {
       source = null;
       target = ".hushlogin";

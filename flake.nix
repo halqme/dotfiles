@@ -1,6 +1,4 @@
 {
-  description = "HALQME dotfiles";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 

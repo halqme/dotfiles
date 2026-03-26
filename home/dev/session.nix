@@ -21,14 +21,6 @@
   };
 
   home.sessionPath = [
-    # ========================================================================
-    # VERSION MANAGEMENT & RUNTIME MANAGERS
-    # ========================================================================
-    "$HOME/.local/share/mise/shims" # Mise: polyglot runtime manager
-
-    # ========================================================================
-    # LANGUAGE RUNTIMES & COMPILERS
-    # ========================================================================
     "$HOME/.modular/pkg/packages.modular.com_mojo/bin" # Modular Mojo
     "$HOME/.ghcup/bin" # Haskell GHCup
     "$HOME/.go/bin" # Go binaries
@@ -36,14 +28,6 @@
     "$HOME/.bun/bin" # Bun JavaScript runtime
     "$HOME/.moon/bin" # MoonBit
 
-    # ========================================================================
-    # CUSTOM & LOCAL TOOLS
-    # ========================================================================
-    "$HOME/.progate/bin" # Progate tools
-
-    # ========================================================================
-    # SYSTEM-WIDE PACKAGE MANAGERS
-    # ========================================================================
     "/usr/local/share/dotnet" # .NET SDK binaries
   ];
 }
