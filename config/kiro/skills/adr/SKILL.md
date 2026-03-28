@@ -1,11 +1,6 @@
 ---
 name: adr
-description: >
-  Skill for creating and managing Architecture Decision Records (ADRs).
-  Use this skill whenever the user wants to document architectural or technical decisions as lightweight Markdown files.
-  Triggers include: "write an ADR", "record this architecture decision", "document why we chose X",
-  "I want to capture this tech decision", "create a decision record", or when retrospectively
-  documenting an existing technology choice. Also use when helping update or supersede an existing ADR.
+description: Skill for creating and managing Architecture Decision Records (ADRs). Use this skill whenever the user wants to document architectural or technical decisions as lightweight Markdown files. documenting an existing technology choice. Also use when helping update or supersede an existing ADR.
 ---
 
 # Architecture Decision Record (ADR) Skill
