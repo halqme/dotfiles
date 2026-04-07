@@ -12,10 +12,6 @@ linker = "isolated"
 minimumReleaseAge = 129600
 minimumReleaseAgeExcludes = ["@types/bun", "typescript", "@sourcegraph/amp"]
 
-[install.cache]
-disable = false
-disableManifest = false
-
 [console]
 depth = 3
 
