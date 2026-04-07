@@ -23,6 +23,12 @@
     enable = true;
     nix-direnv.enable = true; # Use nix-direnv for better Nix support
     enableZshIntegration = true; # Auto-load .envrc when entering directories
+    config = {
+      global = {
+        log_format = "";
+      };
+    }
+    ;
   };
 
   # ============================================================================

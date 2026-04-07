@@ -1,7 +1,4 @@
 {
-  # Standard Homebrew casks (applications). Fonts are managed separately in
-  # modules/gui/font.nix via my.gui.fonts to avoid accidental removal during
-  # cask cleanup.
   my.gui.casks = [
     "1password"
     "1password-cli"

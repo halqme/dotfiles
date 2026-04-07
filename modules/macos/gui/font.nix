@@ -1,6 +1,4 @@
 {
-  # Manage fonts separately from casks. These should be Homebrew font cask
-  # names (usually starting with "font-").
   my.gui.fonts = [
     "font-aoboshi-one"
     "font-biz-udpgothic"

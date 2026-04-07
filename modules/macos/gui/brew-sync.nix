@@ -10,19 +10,18 @@ let
   brewfileContent = lib.concatStringsSep "\n" (
     (map (cask: "cask \"${cask}\"") casks)
     ++ (map (font: "cask \"${font}\"") fonts)
-    ++ (map (name: "mas \"${name}\"") (builtins.attrNames masApps))
+    ++ (map (name: "mas \"${name}\", id: ${toString masApps.${name}}") (builtins.attrNames masApps))
   );
 in
 {
   # .Brewfile をホームディレクトリに生成
   home.file.".Brewfile".text = brewfileContent;
 
-  # アクティベーションスクリプト：ハッシュ比較で差分がある時だけ brew bundle を実行
   home.activation.brewSync = ''
     set -e
 
     # PATH に homebrew を追加
-    export PATH="$HOME/.nix-profile/bin:/opt/homebrew/bin:/usr/local/bin:$HOME/.homebrew/bin:$PATH"
+    export PATH="/usr/bin:/usr/local/bin:$HOME/.nix-profile/bin:/opt/homebrew/bin:$HOME/.homebrew/bin:$PATH"
 
     # brew バイナリを検索
     BREW_BIN=$(command -v brew || true)

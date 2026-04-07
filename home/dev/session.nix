@@ -21,10 +21,10 @@
   };
 
   home.sessionPath = [
+    "$HOME/.local/bin" # Local Packages
     "$HOME/.modular/pkg/packages.modular.com_mojo/bin" # Modular Mojo
     "$HOME/.ghcup/bin" # Haskell GHCup
     "$HOME/.go/bin" # Go binaries
-    "$HOME/.bun/install/global/node_modules/.bin" # Bun JavaScript runtime
     "$HOME/.bun/bin" # Bun JavaScript runtime
     "$HOME/.moon/bin" # MoonBit
 
