@@ -25,7 +25,7 @@
     enableZshIntegration = true; # Auto-load .envrc when entering directories
     config = {
       global = {
-        log_format = "";
+        log_filter = "^$";
       };
     }
     ;
