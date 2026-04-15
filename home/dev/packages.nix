@@ -35,7 +35,7 @@
     # ========================================================================
     # TASK RUNNING & AUTOMATION
     # ========================================================================
-    go-task # Task runner (Makefile alternative)
+    just
 
     # ========================================================================
     # DOCUMENTATION & MARKUP
@@ -46,14 +46,13 @@
     # ========================================================================
     # CI/CD
     # ========================================================================
-    act # Run GitHub Actions locally
+    act# Run GitHub Actions locally
 
     # ========================================================================
     # PROGRAMMING LANGUAGE RUNTIMES
     # ========================================================================
     go # Go programming language
     rustup # Rust toolchain installer
-    zig # Zig programming language
     bun # Bun JavaScript runtime
     nodejs-slim_latest
 
@@ -86,7 +85,7 @@
     # MEDIA & GRAPHICS
     # ========================================================================
     imagemagick # Image processing suite
-    texliveSmall # LaTeX distribution (minimal)
+    ghostscript #
     ffmpeg # Multimedia framework
     aria2 # Download utility
     d2 # Diagram creation language
