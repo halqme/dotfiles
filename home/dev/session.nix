@@ -16,7 +16,6 @@
     # LANGUAGE RUNTIMES & SDKS
     # ========================================================================
     GOPATH = "$HOME/.go"; # Go workspace path
-    DOTNET_ROOT = "/usr/local/share/dotnet"; # .NET SDK location
     MODULAR_HOME = "$HOME/.modular"; # Modular Mojo SDK
   };
 
@@ -27,7 +26,5 @@
     "$HOME/.go/bin" # Go binaries
     "$HOME/.bun/bin" # Bun JavaScript runtime
     "$HOME/.moon/bin" # MoonBit
-
-    "/usr/local/share/dotnet" # .NET SDK binaries
   ];
 }
