@@ -76,7 +76,33 @@
   # Vim-based text editor
   programs.neovim = {
     enable = true;
+    defaultEditor = false;
+  };
+  # Helix Editor
+  programs.helix = {
+    enable = true;
     defaultEditor = true;
+    settings = {
+      theme = "base16_transparent";
+      editor = {
+        line-number = "relative";
+        middle-click-paste = false;
+        mouse = true;
+        true-color = true;
+        popup-border = "popup";
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        file-picker = {
+          hidden = false;
+        };
+        lsp = {
+          display-messages = true;
+        };
+      };
+    };
   };
   # ============================================================================
   # PACKAGE & INDEX MANAGEMENT
