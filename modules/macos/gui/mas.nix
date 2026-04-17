@@ -1,6 +1,5 @@
 {
   my.gui.masApps = {
-    "1Password for Safari" = 1569813296;
     "Baking Soda" = 1601151613;
     "Bluebird" = 1478757472;
     "Boop" = 1518425043;
