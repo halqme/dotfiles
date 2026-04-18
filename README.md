@@ -24,7 +24,10 @@ git clone <repo-url> ~/dotfiles
 cd ~/dotfiles
 
 # 初回適用
-make switch
+## flakes, nix-commandの有効化
+echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
+## 実行
+nix-shell -p home-manager.out --run 'home-manager switch --flake .#hal'
 ```
 
 ## 使い方
