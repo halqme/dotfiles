@@ -8,10 +8,5 @@ lib.mkIf isDarwin {
       source = ../../config/karabiner;
       target = "config/karabiner";
     };
-
-    hammerspoon = {
-      source = ../../config/hammerspoon;
-      target = ".hammerspoon";
-    };
   };
 }
