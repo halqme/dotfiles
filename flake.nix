@@ -20,6 +20,7 @@
     system = "aarch64-darwin";
     pkgs = import nixpkgs {
       inherit system;
+      config.allowUnfree = true;
     };
   in {
     homeConfigurations = {
