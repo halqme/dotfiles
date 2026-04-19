@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # ============================================================================
   # PACKAGES
   # ============================================================================
@@ -25,8 +23,9 @@
     # ========================================================================
     # AGENTS
     # ========================================================================
-    kiro-cli
-    copilot-cli
+    github-copilot-cli
+    kilocode-cli
+    pi-coding-agent
 
     # ========================================================================
     # SEARCH & NAVIGATION
@@ -46,23 +45,16 @@
     just
 
     # ========================================================================
-    # DOCUMENTATION & MARKUP
-    # ========================================================================
-    glow # Markdown viewer
-    marksman # Markdown language server
-
-    # ========================================================================
     # CI/CD
     # ========================================================================
-    act# Run GitHub Actions locally
+    act # Run GitHub Actions locally
 
     # ========================================================================
     # PROGRAMMING LANGUAGE RUNTIMES
     # ========================================================================
     go # Go programming language
     rustup # Rust toolchain installer
-    bun # Bun JavaScript runtime
-    nodejs-slim_latest
+    nodejs_latest
 
     # ========================================================================
     # LANGUAGE SERVERS & DEVELOPMENT TOOLS
@@ -71,7 +63,8 @@
     gopls # Go language server
     nil # Nix language server
     nixd # Modern Nix language server
-    alejandra
+    alejandra # Nix Formatter
+    roslyn-ls # C# Language Server
 
     # ========================================================================
     # PACKAGE MANAGERS
