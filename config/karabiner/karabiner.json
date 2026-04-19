@@ -1,0 +1,321 @@
+{
+  "profiles": [
+    {
+      "complex_modifications": {
+        "parameters": {
+          "basic.simultaneous_threshold_milliseconds": 30,
+          "basic.to_delayed_action_delay_milliseconds": 400,
+          "basic.to_if_alone_timeout_milliseconds": 700,
+          "basic.to_if_held_down_threshold_milliseconds": 400
+        },
+        "rules": [
+          {
+            "description": "左右のCommandキー単押しで英数・かな切り替え",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "left_command"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_eisuu"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "right_command"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "japanese_kana"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Launch Pieoneer Switcher",
+            "manipulators": [
+              {
+                "from": {
+                  "pointing_button": "button4"
+                },
+                "to": [
+                  {
+                    "key_code": "1",
+                    "modifiers": [
+                      "left_command",
+                      "left_control"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "SpaceをHyper Key(長押し)とSpace(単押し)に",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 200
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "spacebar"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "devices": [
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 834,
+            "vendor_id": 1452
+          },
+          "simple_modifications": [
+            {
+              "from": {
+                "key_code": "caps_lock"
+              },
+              "to": [
+                {
+                  "key_code": "right_control"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 34304,
+            "vendor_id": 1452
+          },
+          "treat_as_built_in_keyboard": true
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 50495,
+            "vendor_id": 1133
+          },
+          "ignore": true,
+          "manipulate_caps_lock_led": false,
+          "simple_modifications": [
+            {
+              "from": {
+                "pointing_button": "button4"
+              },
+              "to": [
+                {
+                  "key_code": "left_command"
+                }
+              ]
+            },
+            {
+              "from": {
+                "pointing_button": "button5"
+              },
+              "to": [
+                {
+                  "key_code": "right_shift"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_pointing_device": true,
+            "product_id": 50495,
+            "vendor_id": 1133
+          },
+          "ignore": false
+        },
+        {
+          "identifiers": {
+            "is_pointing_device": true,
+            "product_id": 306,
+            "vendor_id": 1390
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": {
+                "pointing_button": "button4"
+              },
+              "to": [
+                {
+                  "key_code": "page_down"
+                }
+              ]
+            },
+            {
+              "from": {
+                "pointing_button": "button5"
+              },
+              "to": [
+                {
+                  "key_code": "page_up"
+                }
+              ]
+            },
+            {
+              "from": {
+                "pointing_button": "button6"
+              },
+              "to": [
+                {
+                  "key_code": "left_shift"
+                }
+              ]
+            },
+            {
+              "from": {
+                "pointing_button": "button7"
+              },
+              "to": [
+                {
+                  "key_code": "left_option"
+                }
+              ]
+            },
+            {
+              "from": {
+                "pointing_button": "button8"
+              },
+              "to": [
+                {
+                  "software_function": {
+                    "cg_event_double_click": {
+                      "button": 0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 33,
+            "vendor_id": 1278
+          },
+          "manipulate_caps_lock_led": false,
+          "treat_as_built_in_keyboard": true
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 514,
+            "vendor_id": 10429
+          },
+          "ignore": false,
+          "manipulate_caps_lock_led": false
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 306,
+            "vendor_id": 1390
+          },
+          "ignore": true,
+          "simple_modifications": [
+            {
+              "from": {
+                "pointing_button": "button8"
+              },
+              "to": [
+                {
+                  "sticky_modifier": {
+                    "fn": "toggle"
+                  }
+                },
+                {
+                  "key_code": "fn"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true
+          },
+          "simple_modifications": [
+            {
+              "from": {
+                "key_code": "caps_lock"
+              },
+              "to": [
+                {
+                  "key_code": "right_control"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": {
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# ============================================================================
+# Ghostty Main Configuration
+# ============================================================================
+# - font.conf: フォント、テキストレンダリング
+# - appearance.conf: テーマ、背景、カーソル、色
+# - window.conf: ウィンドウ、タブ、パディング
+# - input.conf: マウス、クリップボード、選択
+# - shell.conf: シェル統合、コマンド実行
+# - layout.conf: リサイズ、分割表示
+# - platform.conf: macOS、Linux、GTK固有設定
+# - advanced.conf: クイックターミナル、ベル、更新
+
+config-file = font.conf
+config-file = appearance.conf
+config-file = window.conf
+config-file = input.conf
+config-file = shell.conf
+config-file = layout.conf
+config-file = platform.conf
+config-file = advanced.conf
+config-file = keybind.conf
