@@ -9,14 +9,17 @@
     # ========================================================================
     # VERSION CONTROL
     # ========================================================================
-    delta # Syntax-highlighting diff viewer
     gh # GitHub CLI
     ghq # Repository manager
+    jujutsu # Modern VCS
 
     # ========================================================================
     # SHELL & UTILITIES
     # ========================================================================
     comma # Run programs without installing them
+    bat # Synta-highlighting cat
+    tmux # Terminal multiplexer
+    zellij # Modern terminal multiplexer
     _1password-cli
     bitwarden-cli
 
@@ -37,6 +40,7 @@
     # SYSTEM MONITORING
     # ========================================================================
     dust # Disk usage visualization
+    bottom # System resource monitor
     htop # Interactive process viewer
 
     # ========================================================================
@@ -54,7 +58,7 @@
     # ========================================================================
     go # Go programming language
     rustup # Rust toolchain installer
-    nodejs_latest
+    nodejs-slim_latest # JavaScript Runtime
 
     # ========================================================================
     # LANGUAGE SERVERS & DEVELOPMENT TOOLS
@@ -70,6 +74,7 @@
     # PACKAGE MANAGERS
     # ========================================================================
     pnpm # Fast JavaScript package manager
+    nodejs-slim_latest.npm # node package manager
 
     # ========================================================================
     # PYTHON

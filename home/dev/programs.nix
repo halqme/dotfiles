@@ -6,17 +6,6 @@
   # programs through home-manager.
 
   # ============================================================================
-  # FILE & TEXT TOOLS
-  # ============================================================================
-  programs.bat.enable = true; # Syntax-highlighted cat
-  programs.ripgrep.enable = true; # Fast grep alternative (rg)
-
-  # ============================================================================
-  # SYSTEM MONITORING & UTILITIES
-  # ============================================================================
-  programs.bottom.enable = true; # System resource monitor
-
-  # ============================================================================
   # ENVIRONMENT & SHELL INTEGRATION
   # ============================================================================
   programs.direnv = {
@@ -29,6 +18,11 @@
       };
     }
     ;
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # ============================================================================
@@ -63,7 +57,6 @@
   # ============================================================================
   # VERSION CONTROL
   # ============================================================================
-  programs.jujutsu.enable = true; # Modern VCS (experimental)
   # Interactive git CLI
   programs.lazygit = {
     enable = true;
@@ -104,14 +97,4 @@
       };
     };
   };
-  # ============================================================================
-  # PACKAGE & INDEX MANAGEMENT
-  # ============================================================================
-  programs.nix-index.enable = true; # Quickly search packages in nixpkgs
-
-  # ============================================================================
-  # TERMINAL MULTIPLEXING
-  # ============================================================================
-  programs.tmux.enable = true; # Terminal multiplexer
-  programs.zellij.enable = true; # Modern terminal workspace
 }
