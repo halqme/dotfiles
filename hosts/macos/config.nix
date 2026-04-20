@@ -9,13 +9,13 @@
     ".hushlogin".text = "";
     ".gitignore_global".source = ../../config/.gitignore_global;
     ".tmux.conf".source = ../../config/tmux.conf;
-    ".vimrc".source = ../../config/vimrc;
-    ".config/brew/Brewfile".source = ../../config/Brewfile;
+    ".vimrc".source = ../../config/vim/vimrc;
+    ".config/homebrew/Brewfile".source = ../../config/homebrew/Brewfile;
   };
 
   xdg.configFile = {
     "zsh/.p10k.zsh" = {
-      source = ../../config/.p10k.zsh;
+      source = ../../config/zsh/.p10k.zsh;
     };
 
     "karabiner" = {
@@ -35,7 +35,7 @@
     };
 
     ".bunfig.toml" = {
-      source = ../../config/bunfig.toml;
+      source = ../../config/bun/bunfig.toml;
     };
   };
 }
