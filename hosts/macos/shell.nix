@@ -6,7 +6,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     enableVteIntegration = true;
-    zsh-abbr.enable = true;
 
     # Zsh options
     setOptions = [
