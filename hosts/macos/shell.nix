@@ -1,11 +1,52 @@
 {pkgs, ...}: {
   programs.zsh = {
     enable = true;
+    defaultKeymap = "emacs";
+    autocd = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
     enableVteIntegration = true;
-    defaultKeymap = "emacs";
+    zsh-abbr.enable = true;
+
+    # Zsh options
+    setOptions = [
+      "AUTO_PUSHD"
+      "CD_PATH"
+      "HIST_IGNORE_SPACE"
+      "HIST_REDUCE_BLANKS"
+      "INTERACTIVE_COMMENTS"
+      "NO_BEEP"
+      "PRINT_EIGHT_BIT"
+      "PUSHD_IGNORE_DUPS"
+      "RM_STAR_SILENT"
+    ];
+
+    history = {
+      extended = true;
+      ignoreAllDups = true;
+      share = true;
+      size = 10000;
+    };
+
+    # Plugins
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.zsh-fast-syntax-highlighting;
+        file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
+      }
+    ];
+
+    siteFunctions = {
+      mkcd = ''
+        mkdir --parents "$1" &amp;&amp; cd "$1"
+      '';
+    };
 
     shellGlobalAliases = {
       C = "| tee >(pbcopy)";
@@ -62,28 +103,6 @@
       yt-dlp-f = "yt-dlp --no-check-certificate";
       zj = "zellij attach default || zellij --session default";
     };
-
-    # Zsh options
-    setOptions = [
-      "PRINT_EIGHT_BIT"
-      "INTERACTIVE_COMMENTS"
-      "AUTO_CD"
-      "EXTENDED_HISTORY"
-      "RM_STAR_SILENT"
-      "SHARE_HISTORY"
-      "HIST_IGNORE_ALL_DUPS"
-      "HIST_IGNORE_SPACE"
-      "HIST_REDUCE_BLANKS"
-    ];
-
-    # Plugins
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-    ];
 
     initContent = ''
       alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="imgcat"
