@@ -17,8 +17,8 @@
       source = ../../config/zsh/.p10k.zsh;
     };
 
-    "homebrew" = {
-      source = ../../config/homebrew;
+    "homebrew/Brewfile" = {
+      source = ../../config/homebrew/Brewfile;
     };
 
     "karabiner" = {
