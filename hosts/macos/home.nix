@@ -28,9 +28,12 @@
 
       if [ "$NEW_HASH" != "$OLD_HASH" ] ; then
         echo "Brewfile changed, running brew bundle..."
-        /opt/homebrew/bin/brew bundle --cleanup --global || true
-        echo "$NEW_HASH" > "$HASH_FILE"
+        if /opt/homebrew/bin/brew bundle --cleanup --global; then
+          echo "$NEW_HASH" > "$HASH_FILE"
         else
+          echo "brew bundle failed. Skipping hash update."
+        fi
+      else
         echo "Brewfile unchanged, skipping brew bundle."
       fi
     fi

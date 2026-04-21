@@ -1,5 +1,3 @@
-# Mac App Store command-line interface
-brew "mas"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Stand alone ad blocker
@@ -226,60 +224,3 @@ cask "xcodes-app"
 cask "zed"
 # Video communication and virtual meeting platform
 cask "zoom"
-mas "Baking Soda", id: 1601151613
-mas "Bluebird", id: 1478757472
-mas "Boop", id: 1518425043
-mas "bunkoOCR", id: 1611405865
-mas "choclift", id: 6759246284
-mas "Color Picker", id: 1545870783
-mas "Compressor", id: 424390742
-mas "DaisyDisk", id: 411643860
-mas "DaVinci Resolve", id: 571213070
-mas "egword Universal 2", id: 1272842196
-mas "Expenses", id: 1492055171
-mas "Final Cut Pro", id: 424389933
-mas "FirstSeed Calendar", id: 1348617240
-mas "FirstSeed Tasks", id: 1627018604
-mas "FocusFlight", id: 6648771147
-mas "Folder Quick Look", id: 6753110395
-mas "Gamma Dimmer", id: 1635180752
-mas "Goodnotes", id: 1444383602
-mas "HextEdit", id: 1557247094
-mas "Hyperduck", id: 6444667067
-mas "iA Writer", id: 775737590
-mas "Keynote", id: 361285480
-mas "Logic Pro", id: 634148309
-mas "MainStage", id: 634159523
-mas "Mercury", id: 1621800675
-mas "Motion", id: 434290957
-mas "NotesHub", id: 1621210753
-mas "Numbers", id: 361304891
-mas "OneDrive", id: 823766827
-mas "Orb", id: 6477840170
-mas "Pages", id: 361309726
-mas "Patterns", id: 429449079
-mas "Photomator", id: 1444636541
-mas "Pieoneer", id: 6739781207
-mas "Pixelmator Pro", id: 1289583905
-mas "Prime Video", id: 545519333
-mas "RunCat", id: 1429033973
-mas "ScreenToLayers", id: 1077317077
-mas "Shareful", id: 1522267256
-mas "stone", id: 1230288277
-mas "Structured", id: 1499198946
-mas "TestFlight", id: 899247664
-mas "Things", id: 904280696
-mas "TimeDeposit", id: 6445899149
-mas "Toggl Track", id: 1291898086
-mas "Usage", id: 1561788435
-mas "Velja", id: 1607635845
-mas "Vinegar", id: 1591303229
-mas "Yoink", id: 457622435
-mas "辞書 by 物書堂", id: 1380563956
-vscode "monokai.theme-monokai-pro-vscode"
-vscode "ms-dotnettools.csdevkit"
-vscode "ms-dotnettools.csharp"
-vscode "ms-dotnettools.vscode-dotnet-runtime"
-go "github.com/edoardottt/cariddi/cmd/cariddi"
-go "golang.org/x/tools/gopls"
-go "honnef.co/go/tools/cmd/staticcheck"
