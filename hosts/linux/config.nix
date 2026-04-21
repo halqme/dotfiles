@@ -6,8 +6,8 @@
   programs.home-manager.enable = true;
 
   xdg.configFile = {
-    "zsh/.p10k.zsh" = {
-      source = ../../config/zsh/.p10k.zsh;
+    "zsh" = {
+      source = ../../config/zsh;
     };
 
 

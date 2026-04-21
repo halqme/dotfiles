@@ -10,12 +10,15 @@
     ".gitignore_global".source = ../../config/.gitignore_global;
     ".tmux.conf".source = ../../config/tmux.conf;
     ".vimrc".source = ../../config/vim/vimrc;
-    ".config/homebrew/Brewfile".source = ../../config/homebrew/Brewfile;
   };
 
   xdg.configFile = {
     "zsh/.p10k.zsh" = {
       source = ../../config/zsh/.p10k.zsh;
+    };
+
+    "homebrew" = {
+      source = ../../config/homebrew;
     };
 
     "karabiner" = {
