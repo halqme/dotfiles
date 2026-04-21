@@ -150,8 +150,6 @@ cask "macs-fan-control"
 cask "macskk"
 # Speech recognition tool
 cask "macwhisper"
-# Markdown editor
-cask "markedit"
 # Multi-platform web browser
 cask "microsoft-edge"
 # Spreadsheet software
@@ -228,8 +226,6 @@ cask "xcodes-app"
 cask "zed"
 # Video communication and virtual meeting platform
 cask "zoom"
-# Collect, organise, cite, and share research sources
-cask "zotero"
 mas "Baking Soda", id: 1601151613
 mas "Bluebird", id: 1478757472
 mas "Boop", id: 1518425043
