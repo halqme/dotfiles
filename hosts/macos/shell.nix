@@ -3,14 +3,13 @@
     enable = true;
     defaultKeymap = "emacs";
     autocd = true;
-    enableCompletion = true;
     autosuggestion.enable = true;
+    enableCompletion = true;
     enableVteIntegration = true;
 
     # Zsh options
     setOptions = [
       "AUTO_PUSHD"
-      "CD_PATH"
       "HIST_IGNORE_SPACE"
       "HIST_REDUCE_BLANKS"
       "INTERACTIVE_COMMENTS"
@@ -43,7 +42,7 @@
 
     siteFunctions = {
       mkcd = ''
-        mkdir --parents "$1" &amp;&amp; cd "$1"
+        mkdir --parents "$1" && cd "$1"
       '';
     };
 
