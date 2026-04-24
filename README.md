@@ -45,7 +45,7 @@ home-manager switch
 
 ### 4. クリーンアップ
 ```bash
-home-manager expire-generations '-1 day'
+nix run home-manager/master -- expire-generations '-1 day'
 nix-env --profile ~/.local/state/nix/profiles/home-manager --delete-generations +5
 nix-collect-garbage -d
 ```

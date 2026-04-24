@@ -1,18 +1,23 @@
 # --- System & Utilities ---
 cask "1password"              # Password manager
-cask "bitwarden-desktop"      # Password manager
+cask "bitwarden"              # Password manager
 cask "adguard"                # Ad blocker
 cask "alienator88-sentinel"   # Gatekeeper/Unquarantine
+cask "backdrop"               # Desktop image
 cask "apparency"              # Inspect application bundles
 cask "bettertouchtool"        # Input customization & Automation
+cask "deskpad"                # Desktop extender
 cask "cleanmymac"             # Disk cleanup
 cask "karabiner-elements"     # Keyboard customizer
+cask "keka"                   # Archive manager
 cask "keyboardcleantool"      # Keyboard/TouchBar lock
 cask "macs-fan-control"       # Fan control
 cask "name-mangler"           # Multi-file renaming
 cask "neo-network-utility"    # Network diagnostics
 cask "notchnook"              # Notch area customization
 cask "popclip"                # Context-specific actions
+cask "hhkb"                   # Config tool for HHKB
+cask "raycast"                # Productivity launcher
 cask "rectangle-pro"          # Window snapping
 cask "suspicious-package"     # Installer inspection
 cask "tailscale-app"          # Mesh VPN
@@ -22,6 +27,7 @@ cask "trex"                   # Text extraction
 cask "ghostty"                # Terminal emulator (Native/GPU)
 cask "wezterm@nightly"        # GPU terminal & multiplexer
 cask "zed"                    # Multiplayer code editor
+cask "ollama-app"             # Local AI model runner
 cask "orbstack"               # Docker Desktop replacement
 cask "container"              # Linux containers/VMs
 cask "virtualbuddy"           # Virtualization tool
@@ -46,7 +52,12 @@ cask "craft"                  # Native document editor
 cask "notion-calendar"        # Professional calendar
 cask "scapple"                # Notepad/Mindmap
 cask "scrivener"              # Typewriter-style word processor
+cask "superwhisper"           # Voice input tool
+cask "ia-presenter"           # Markdown based presentation tool
+cask "ia-markdown-dictionary" # Markdown syntax dictionary for iA Writer
 cask "soulver"                # Notepad with calculator
+cask "macskk"                 # Japanese input method
+cask "macwhisper"             # Transcription tool
 cask "microsoft-word"         # Word processor
 cask "microsoft-excel"        # Spreadsheet
 cask "microsoft-powerpoint"   # Presentation
@@ -55,9 +66,9 @@ cask "microsoft-teams"        # Collaboration
 # --- Web Browsers ---
 cask "google-chrome"
 cask "firefox"
-cask "firefox@developer-edition"
+cask "firefox@developer-edition" # Developer edition of Firefox
 cask "microsoft-edge"
-cask "vivaldi"
+cask "vivaldi"                # A fast, privacy-focused browser
 cask "duckduckgo"             # Privacy-focused
 cask "tor-browser"            # Security-focused
 
@@ -65,6 +76,7 @@ cask "tor-browser"            # Security-focused
 cask "signal"                 # Secure messaging
 cask "zoom"                   # Video meetings
 cask "steam"                  # Game distribution
+cask "crossover"              # Windows app emulation
 cask "prismlauncher"          # Minecraft launcher
 cask "downie"                 # Video downloader
 cask "netnewswire"            # RSS reader
