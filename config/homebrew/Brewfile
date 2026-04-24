@@ -1,57 +1,78 @@
-# Password manager that keeps all passwords secure behind one password
-cask "1password"
-# Stand alone ad blocker
-cask "adguard"
-# Image editing and design software
-cask "affinity"
-# Configure Gatekeeper, unquarantine and self-sign apps
-cask "alienator88-sentinel"
-# Temporary notes with calculations and extensible features
-cask "antinote"
-# Inspect application bundles
-cask "apparency"
-# Multi-track audio editor and recorder
-cask "audacity"
-# Live wallpaper app
-cask "backdrop"
-# Tool to flash OS images to SD cards & USB drives
-cask "balenaetcher"
-# Tool to customise input devices and automate computer systems
-cask "bettertouchtool"
-# 3D creation suite
-cask "blender"
-# Client for the Box cloud storage service
-cask "box-drive"
-# CD burning application
-cask "burn"
-# Design tool
-cask "canva"
-# OpenAI's official browser with ChatGPT built in
-cask "chatgpt-atlas"
-# Tool to remove unnecessary files and folders from disk
-cask "cleanmymac"
-# Create and run Linux containers using lightweight virtual machines
-cask "container"
-# Plain-text editor for web pages, program source codes and more
-cask "coteditor"
-# Native document editor
-cask "craft"
-# Tool to run Windows software
-cask "crossover"
-# Virtual monitor for screen sharing
-cask "deskpad"
-# Utilities designed to make common development tasks easier
-cask "devtoys"
-# Downloads videos from different websites
-cask "downie"
-# Online diagram software
-cask "drawio"
-# Web browser focusing on privacy
-cask "duckduckgo"
-# Web browser
+# --- System & Utilities ---
+cask "1password"              # Password manager
+cask "bitwarden-desktop"      # Password manager
+cask "adguard"                # Ad blocker
+cask "alienator88-sentinel"   # Gatekeeper/Unquarantine
+cask "apparency"              # Inspect application bundles
+cask "bettertouchtool"        # Input customization & Automation
+cask "cleanmymac"             # Disk cleanup
+cask "karabiner-elements"     # Keyboard customizer
+cask "keyboardcleantool"      # Keyboard/TouchBar lock
+cask "macs-fan-control"       # Fan control
+cask "name-mangler"           # Multi-file renaming
+cask "neo-network-utility"    # Network diagnostics
+cask "notchnook"              # Notch area customization
+cask "popclip"                # Context-specific actions
+cask "rectangle-pro"          # Window snapping
+cask "suspicious-package"     # Installer inspection
+cask "tailscale-app"          # Mesh VPN
+cask "trex"                   # Text extraction
+
+# --- Development Tools (GUI) ---
+cask "ghostty"                # Terminal emulator (Native/GPU)
+cask "wezterm@nightly"        # GPU terminal & multiplexer
+cask "zed"                    # Multiplayer code editor
+cask "orbstack"               # Docker Desktop replacement
+cask "container"              # Linux containers/VMs
+cask "virtualbuddy"           # Virtualization tool
+cask "xcodes-app"             # Xcode version manager
+cask "devtoys"                # Dev utility toolkit
+
+# --- Design & Creative ---
+cask "affinity"               # Image editing & Design
+cask "blender"                # 3D creation suite
+cask "canva"                  # Design tool
+cask "drawio"                 # Diagram software
+cask "godot"                  # Game engine
+cask "handbrake-app"          # Video transcoder
+cask "obs"                    # Streaming & Recording
+cask "ogdesign-eagle"         # Reference image organizer
+cask "shottr"                 # Screenshot measurement/annotation
+
+# --- Productivity & Office ---
+cask "antinote"               # Temporary notes & Calc
+cask "coteditor"              # Plain-text editor
+cask "craft"                  # Native document editor
+cask "notion-calendar"        # Professional calendar
+cask "scapple"                # Notepad/Mindmap
+cask "scrivener"              # Typewriter-style word processor
+cask "soulver"                # Notepad with calculator
+cask "microsoft-word"         # Word processor
+cask "microsoft-excel"        # Spreadsheet
+cask "microsoft-powerpoint"   # Presentation
+cask "microsoft-teams"        # Collaboration
+
+# --- Web Browsers ---
+cask "google-chrome"
 cask "firefox"
-# Web browser
 cask "firefox@developer-edition"
+cask "microsoft-edge"
+cask "vivaldi"
+cask "duckduckgo"             # Privacy-focused
+cask "tor-browser"            # Security-focused
+
+# --- Communication & Others ---
+cask "signal"                 # Secure messaging
+cask "zoom"                   # Video meetings
+cask "steam"                  # Game distribution
+cask "prismlauncher"          # Minecraft launcher
+cask "downie"                 # Video downloader
+cask "netnewswire"            # RSS reader
+cask "google-drive"           # Google Drive
+cask "burn"                   # CD burning
+
+# --- Fonts ---
+# Japanese Fonts
 cask "font-aoboshi-one"
 cask "font-biz-udpgothic"
 cask "font-biz-udpmincho"
@@ -64,10 +85,6 @@ cask "font-hachi-maru-pop"
 cask "font-hannari"
 cask "font-harano-aji"
 cask "font-hina-mincho"
-cask "font-ia-writer-duo"
-cask "font-ia-writer-mono"
-cask "font-ia-writer-quattro"
-cask "font-iceberg"
 cask "font-ipaexfont"
 cask "font-ipafont"
 cask "font-ipamjmincho"
@@ -94,8 +111,6 @@ cask "font-nico-moji"
 cask "font-noto-sans-jp"
 cask "font-pigmo00"
 cask "font-pigmo01"
-cask "font-poppins"
-cask "font-poprumcute"
 cask "font-sawarabi-gothic"
 cask "font-sawarabi-mincho"
 cask "font-shippori-antique"
@@ -104,7 +119,6 @@ cask "font-shippori-mincho"
 cask "font-shippori-mincho-b1"
 cask "font-shizuru"
 cask "font-shojumaru"
-cask "font-simonetta"
 cask "font-sora"
 cask "font-twinkle-star"
 cask "font-yuji-boku"
@@ -112,111 +126,14 @@ cask "font-yuji-hentaigana-akari"
 cask "font-yuji-hentaigana-akebono"
 cask "font-yuji-syuku"
 cask "font-yusei-magic"
-cask "font-zed-mono-nerd-font"
 cask "font-zen-old-mincho"
-# Terminal emulator that uses platform-native UI and GPU acceleration
-cask "ghostty"
-# 2D and 3D game engine
-cask "godot"
-# Web browser
-cask "google-chrome"
-# Client for the Google Drive storage service
-cask "google-drive"
-# Open-source video transcoder
-cask "handbrake-app"
-# Allows keymap customization on HHKB HYBRID Type-S and HYBRID models
-cask "hhkb"
-# Markdown dictionary for Dictionary.app
-cask "ia-markdown-dictionary"
-# Create presentation slides from a Markdown document
-cask "ia-presenter"
-# Free and open-source media player
-cask "iina"
-# Keyboard customiser
-cask "karabiner-elements"
-# File archiver
-cask "keka"
-# Blocks all Keyboard and TouchBar input
-cask "keyboardcleantool"
-# Controls and monitors all fans on Apple computers
-cask "macs-fan-control"
-# SKK Input Method
-cask "macskk"
-# Speech recognition tool
-cask "macwhisper"
-# Multi-platform web browser
-cask "microsoft-edge"
-# Spreadsheet software
-cask "microsoft-excel"
-# Presentation software
-cask "microsoft-powerpoint"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
-# Word processor
-cask "microsoft-word"
-# Open-source download manager
-cask "motrix"
-# Replica of the iTunes MiniPlayer
-cask "music-miniplayer"
-# Multi-file renaming tool
-cask "name-mangler"
-# Network information and diagnostics utility
-cask "neo-network-utility"
-# Free and open-source RSS reader
-cask "netnewswire"
-# Handy utility to manage and customize the notch area
-cask "notchnook"
-# Calendar for professionals and teams
-cask "notion-calendar"
-# Open-source software for live streaming and screen recording
-cask "obs"
-# Organise all your reference images in one place
-cask "ogdesign-eagle"
-# Get up and running with large language models locally
-cask "ollama-app"
-# Replacement for Docker Desktop
-cask "orbstack"
-# Used to access context-specific actions when text is selected
-cask "popclip"
-# Minecraft launcher
-cask "prismlauncher"
-# Control your tools with a few keystrokes
-cask "raycast"
-# Window snapping tool
-cask "rectangle-pro"
-# Notepad software
-cask "scapple"
-# Word processing software with a typewriter style
-cask "scrivener"
-# Screenshot measurement and annotation tool
-cask "shottr"
-# Instant messaging application focusing on security
-cask "signal"
-# Notepad with a built-in calculator
-cask "soulver"
-# Video game digital distribution service
-cask "steam"
-# Application for inspecting installer packages
-cask "suspicious-package"
-# Mesh VPN based on WireGuard
-cask "tailscale-app"
-# Web browser focusing on security
-cask "tor-browser"
-# Easy to use text extraction tool
-cask "trex"
-# Virtualization tool
-cask "virtualbuddy"
-# Open-source code editor
-cask "visual-studio-code"
-# Web browser with built-in email client focusing on customization and control
-cask "vivaldi"
-# Rust-based terminal
-cask "warp"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm@nightly"
-# Install and switch between multiple versions of Xcode
-cask "xcodes-app"
-# Multiplayer code editor
-cask "zed"
-# Video communication and virtual meeting platform
-cask "zoom"
+
+# Specialized Fonts
+cask "font-ia-writer-duo"
+cask "font-ia-writer-mono"
+cask "font-ia-writer-quattro"
+cask "font-iceberg"
+cask "font-poppins"
+cask "font-poprumcute"
+cask "font-simonetta"
+cask "font-zed-mono-nerd-font"

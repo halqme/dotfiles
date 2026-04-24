@@ -1,57 +1,54 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # Global Language Support
-    ## Nix
+    # --- Languages & Runtimes ---
+    # Nix
     nil
     nixd
     alejandra
-
-    ## JavaScript/TypeScript
+    # JavaScript/TypeScript
     nodejs-slim_latest
     nodejs-slim_latest.npm
     pnpm
-
-    ## C#
-    roslyn-ls
-
-    ## Go
+    # Go
     go
-
-    ## Rust
+    # Rust
     rustup
 
-    # Version Control
+    # --- Version Control ---
     gh # GitHub CLI
     ghq # Repository manager
     jujutsu # Modern VCS
-    lazygit
+    lazygit # Git TUI
 
-    # Tools
-    ## Search
+    # --- CLI Utilities ---
+    # Search & Filter
     fd
     ripgrep
-    ## System Monitoring
+    jq
+    # System Monitoring
     dust
     bottom
     htop
-    ## Task runnner
+    # Task & Workflow
     just
     act
-    ## utils
+    tmux
+    # General Utils
     comma
     bat
-    tmux
-    bitwarden-cli
-    jq
     ffmpeg
     aria2
     d2
+    bitwarden-cli
 
-    # Agents
+    # --- Agents & Specialized Tools ---
     kilocode-cli
 
-    # GUI Apps
-    bitwarden-desktop
+    # --- GUI Apps (Open Source / CLI-based) ---
     beekeeper-studio
+    iina
+    audacity
+    vscode
+    motrix-next
   ];
 }
