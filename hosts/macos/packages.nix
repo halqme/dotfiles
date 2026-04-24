@@ -49,6 +49,9 @@
 
     # Agents
     kilocode-cli
-    pi-coding-agent
+
+    # GUI Apps
+    bitwarden-desktop
+    beekeeper-studio
   ];
 }
