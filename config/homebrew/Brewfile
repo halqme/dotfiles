@@ -30,16 +30,13 @@ cask "zed"                    # Multiplayer code editor
 cask "ollama-app"             # Local AI model runner
 cask "orbstack"               # Docker Desktop replacement
 cask "container"              # Linux containers/VMs
-cask "virtualbuddy"           # Virtualization tool
 cask "xcodes-app"             # Xcode version manager
 cask "devtoys"                # Dev utility toolkit
 
 # --- Design & Creative ---
 cask "affinity"               # Image editing & Design
 cask "blender"                # 3D creation suite
-cask "canva"                  # Design tool
 cask "drawio"                 # Diagram software
-cask "godot"                  # Game engine
 cask "handbrake-app"          # Video transcoder
 cask "obs"                    # Streaming & Recording
 cask "ogdesign-eagle"         # Reference image organizer
@@ -52,7 +49,6 @@ cask "craft"                  # Native document editor
 cask "notion-calendar"        # Professional calendar
 cask "scapple"                # Notepad/Mindmap
 cask "scrivener"              # Typewriter-style word processor
-cask "superwhisper"           # Voice input tool
 cask "ia-presenter"           # Markdown based presentation tool
 cask "ia-markdown-dictionary" # Markdown syntax dictionary for iA Writer
 cask "soulver"                # Notepad with calculator

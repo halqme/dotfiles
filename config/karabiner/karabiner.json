@@ -16,9 +16,7 @@
                 "from": {
                   "key_code": "left_command",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "parameters": {
@@ -40,9 +38,7 @@
                 "from": {
                   "key_code": "right_command",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "parameters": {
@@ -72,44 +68,7 @@
                 "to": [
                   {
                     "key_code": "1",
-                    "modifiers": [
-                      "left_command",
-                      "left_control"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "SpaceをHyper Key(長押し)とSpace(単押し)に",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "parameters": {
-                  "basic.to_if_alone_timeout_milliseconds": 200
-                },
-                "to": [
-                  {
-                    "key_code": "left_shift",
-                    "modifiers": [
-                      "left_command",
-                      "left_control",
-                      "left_option"
-                    ]
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "spacebar"
+                    "modifiers": ["left_command", "left_control"]
                   }
                 ],
                 "type": "basic"

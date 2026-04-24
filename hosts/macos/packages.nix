@@ -35,7 +35,6 @@
     tmux
     # General Utils
     comma
-    bat
     ffmpeg
     aria2
     d2
