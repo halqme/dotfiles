@@ -1,6 +1,5 @@
 # --- System & Utilities ---
 cask "1password"              # Password manager
-cask "bitwarden"              # Password manager
 cask "adguard"                # Ad blocker
 cask "alienator88-sentinel"   # Gatekeeper/Unquarantine
 cask "backdrop"               # Desktop image

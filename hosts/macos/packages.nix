@@ -47,7 +47,7 @@
     ffmpeg
     aria2
     d2
-    bitwarden-cli
+    _1password-cli
 
     # --- Agents & Specialized Tools ---
     kilocode-cli
