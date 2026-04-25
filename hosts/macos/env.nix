@@ -13,6 +13,11 @@
     MODULAR_HOME = "$HOME/.modular"; # Modular Mojo SDK
 
     # ========================================================================
+    # SECRETS
+    # ========================================================================
+    SSH_AUTH_SOCK = "$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock";
+
+    # ========================================================================
     # TOOL CONFIGURATIONS
     # ========================================================================
     GHQ_ROOT = "$HOME/Repo";

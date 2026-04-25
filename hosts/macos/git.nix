@@ -86,11 +86,12 @@
       };
 
       # ====================================================================
-      # GPG SIGNING (using SSH via 1Password)
+      # GPG SIGNING (using BitWarden)
       # ====================================================================
-      gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      };
       # ====================================================================
       # GIT LFS (Large File Storage)
       # ====================================================================

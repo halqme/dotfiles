@@ -111,11 +111,6 @@
       alias -s swift="swift"
       alias -s md="glow -p"
 
-      # Load 1Password CLI completions and integrations
-      if [ -f "$HOME/.config/op/plugins.sh" ]; then
-        source "$HOME/.config/op/plugins.sh"
-      fi
-
       # Bun completions
       if [ -s "$HOME/.bun/_bun" ]; then
         source "$HOME/.bun/_bun"
