@@ -17,6 +17,11 @@
     crystal
     crystalline
     ameba-ls
+    shards
+    # Nim
+    nim
+    nimble
+    nimlangserver
 
     # --- Version Control ---
     gh # GitHub CLI
