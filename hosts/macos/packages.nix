@@ -13,6 +13,10 @@
     go
     # Rust
     rustup
+    # Crystal
+    crystal
+    crystalline
+    ameba-ls
 
     # --- Version Control ---
     gh # GitHub CLI
