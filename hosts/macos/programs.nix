@@ -37,7 +37,11 @@
     enable = true;
     enableZshIntegration = true;
   };
-
+  # TUI for Git
+  programs.lazygit = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   # Search
   programs.fzf = {
     enable = true;

@@ -27,7 +27,6 @@
     gh # GitHub CLI
     ghq # Repository manager
     jujutsu # Modern VCS
-    lazygit # Git TUI
 
     # --- CLI Utilities ---
     # Search & Filter
@@ -44,13 +43,11 @@
     tmux
     # General Utils
     comma
+    bat
+    imgcat
     ffmpeg
     aria2
     d2
-    _1password-cli
-
-    # --- Agents & Specialized Tools ---
-    kilocode-cli
 
     # --- GUI Apps (Open Source / CLI-based) ---
     beekeeper-studio
