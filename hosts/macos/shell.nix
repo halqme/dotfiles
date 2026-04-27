@@ -104,12 +104,12 @@
 
     initContent = ''
       alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="imgcat"
-      alias -s {ts,js,tsx,jsx,html}="bun run"
+      alias -s {ts,js,tsx,jsx,html,md}="bun run"
       alias -s py="python3"
       alias -s python="python3"
       alias -s sh="bash"
       alias -s swift="swift"
-      alias -s md="glow -p"
+      alias -s cr="crystal"
 
       # Bun completions
       if [ -s "$HOME/.bun/_bun" ]; then
