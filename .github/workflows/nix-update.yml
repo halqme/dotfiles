@@ -105,11 +105,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git checkout -b "$BRANCH_NAME"
+          git checkout -B "$BRANCH_NAME"
           git add flake.lock
           git commit -m "chore(deps): nix flake update"
-          git push origin "$BRANCH_NAME" --force
 
+          git push origin "$BRANCH_NAME" --force-with-lease
       - name: Create or update Pull Request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
