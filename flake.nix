@@ -26,6 +26,13 @@
           nix-index-database.homeModules.nix-index
         ];
       };
+      "user" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [
+          ./hosts/linux/home.nix
+          nix-index-database.homeModules.nix-index
+        ];
+      };
       "suse" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."aarch64-linux";
         modules = [
