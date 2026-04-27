@@ -58,6 +58,9 @@ jobs:
           - name: user
             os: ubuntu-latest
             target: .#homeConfigurations.user.activationPackage
+          - name: suse
+            os: ubuntu-24.04-arm
+            target: .#homeConfigurations.suse.activationPackage
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -124,8 +127,9 @@ jobs:
           This is an automated PR to update \`flake.lock\`.
 
           Build Tests:
-          - \`hal\` (aarch64-darwin on macos-15): Passed
-          - \`suse\` (aarch64-linux on ubuntu-24.04-arm64): Passed
+          - \`hal\` (aarch64-darwin on macos-26): Passed
+          - \`user\` (x86_64-linux on ubuntu-latest): Passed
+          - \`suse\` (aarch64-linux on ubuntu-24.04-arm): Passed
           EOF
           )
 
