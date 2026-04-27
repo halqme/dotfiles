@@ -1,9 +1,11 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "HAL";
-    userEmail = "68320771+HALQME@users.noreply.github.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "HAL";
+        email = "68320771+HALQME@users.noreply.github.com";
+      };
       init.defaultBranch = "main";
       pull.rebase = true;
       core.excludesfile = "~/.gitignore_global";

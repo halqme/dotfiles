@@ -13,13 +13,13 @@
       }
     ];
 
-    initExtra = ''
+    initContent = ''
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     '';
   };
 
   home.file = {
-    ".p10k.zsh".source = ../../config/.p10k.zsh;
+    ".p10k.zsh".source = ../../config/zsh/.p10k.zsh;
     ".tmux.conf".source = ../../config/tmux.conf;
   };
 }
