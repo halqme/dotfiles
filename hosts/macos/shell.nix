@@ -81,6 +81,7 @@
       mv = "mv -i";
       rm = "rm -i";
       mkdir = "mkdir -p";
+      less = "less -R";
       history = "history -t \"%F %T\"";
 
       df = "df -h";
@@ -103,7 +104,7 @@
     };
 
     initContent = ''
-      alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="imgcat"
+      alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="gat"
       alias -s {ts,js,tsx,jsx,html,md}="bun run"
       alias -s py="python3"
       alias -s python="python3"

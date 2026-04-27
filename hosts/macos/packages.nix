@@ -43,8 +43,7 @@
     tmux
     # General Utils
     comma
-    bat
-    imgcat
+    gat
     ffmpeg
     aria2
     d2
