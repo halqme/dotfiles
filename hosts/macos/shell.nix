@@ -44,6 +44,10 @@
       mkcd = ''
         mkdir --parents "$1" && cd "$1"
       '';
+
+      repo = ''
+        cd $(ghq list --full-path | fzf)
+      '';
     };
 
     shellGlobalAliases = {
@@ -60,7 +64,6 @@
       "..2" = "cd ../..";
       "..3" = "cd ../../..";
       "~" = "cd ~";
-      repo = "local repodir=$(ghq list | fzf -1 +m) && cd $(ghq root)/$repodir";
 
       c = "clear";
       ls = "eza";

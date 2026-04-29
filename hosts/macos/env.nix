@@ -20,7 +20,7 @@
     # ========================================================================
     # TOOL CONFIGURATIONS
     # ========================================================================
-    GHQ_ROOT = "$HOME/Repo";
+    GHQ_ROOT = "$HOME/Projects";
     _ZO_DATA_DIR = "$HOME/.local/share";
 
     OLLAMA_FLASH_ATTENTION = 1;
