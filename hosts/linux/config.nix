@@ -10,6 +10,9 @@
       source = ../../config/zsh;
     };
 
+    "nvim" = {
+      source = ../../config/nvim;
+    };
 
     ".bunfig.toml" = {
       source = ../../config/bun/bunfig.toml;

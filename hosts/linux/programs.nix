@@ -24,11 +24,6 @@
     icons = "auto";
     git = true;
   };
-  # Track and jump to frequently used directories
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
   # Fast fuzzy finder for file contents
   programs.yazi = {
     enable = true;
@@ -38,11 +33,6 @@
   programs.lazygit = {
     enable = true;
     enableZshIntegration = true;
-  };
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-    enableJujutsuIntegration = true;
   };
   # Search
   programs.fzf = {

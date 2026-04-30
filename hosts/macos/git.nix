@@ -69,6 +69,10 @@
         gpgSign = true; # Sign commits by default
       };
 
+      tag = {
+        gpgSign = true; # Sign tags by default
+      };
+
       rebase = {
         autoSquash = true; # Auto-squash marked commits
         autoStash = true; # Stash changes before rebase
@@ -119,10 +123,9 @@
         st = "status";
         co = "checkout";
         br = "branch";
-        ci = "commit";
+        ci = "commit -m";
         unstage = "reset HEAD --";
         last = "log -1 HEAD";
-        visual = "!gitk";
       };
     };
   };

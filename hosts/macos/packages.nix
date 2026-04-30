@@ -47,12 +47,5 @@
     ffmpeg
     aria2
     d2
-
-    # --- GUI Apps (Open Source / CLI-based) ---
-    beekeeper-studio
-    iina
-    audacity
-    vscode
-    motrix-next
   ];
 }

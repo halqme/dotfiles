@@ -1,9 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    git
-    curl
-    vim
-    tmux
-    ripgrep
+    aria2 # downloader
+    ripgrep # grep replacement
+    htop # top replacement
+    bottom # process monitor
   ];
 }

@@ -53,8 +53,7 @@
     shellGlobalAliases = {
       C = "| tee >(pbcopy)";
       G = "| rg";
-      L = "| less";
-      N = "; notify";
+      L = "| less -R";
       P = "| pbpaste";
       Cloud = "$HOME/Library/CloudStorage/";
     };
@@ -62,7 +61,6 @@
     shellAliases = {
       ".." = "cd ..";
       "..2" = "cd ../..";
-      "..3" = "cd ../../..";
       "~" = "cd ~";
 
       c = "clear";
@@ -70,11 +68,8 @@
       ll = "eza -la";
       lg = "lazygit";
       grep = "rg";
-      glor = "glow -p";
       d = "docker";
       dc = "docker compose";
-      mp = "multipass";
-      q = "kiro-cli";
       kiro = "kiro-cli";
       orb = "TERM=xterm-256color orb";
       nf = "nix flake";
@@ -93,17 +88,9 @@
       datestamp = "date +%Y%m%d%H%M%S";
       ipinfo = "curl ipinfo.io";
       weather = "curl wttr.in";
-      speedtest = "curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -";
       untar = "tar -zxvf";
       port = "lsof -i";
-
-      brew-backup = "brew bundle dump --force --file ~/.config/home-manager/hosts/macbook/config/Brewfile --describe";
-      gh-copilot = "COPILOT_MODEL=gpt-5-mini copilot";
-      gptk = "gameportingtoolkit-no-hud ~/$MY_GAME_PREFIX";
-      pdftohtml = "pdftohtml -enc UTF-8 -noframes";
       tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
-      yt-dlp-f = "yt-dlp --no-check-certificate";
-      zj = "zellij attach default || zellij --session default";
     };
 
     initContent = ''

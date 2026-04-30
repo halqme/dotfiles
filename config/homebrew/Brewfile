@@ -1,6 +1,7 @@
 # --- System & Utilities ---
 cask "1password"              # Password manager
 cask "adguard"                # Ad blocker
+cask "audacity"               # Multi-track audio editor and recorder
 cask "alienator88-sentinel"   # Gatekeeper/Unquarantine
 cask "backdrop"               # Desktop image
 cask "apparency"              # Inspect application bundles
@@ -16,6 +17,7 @@ cask "neo-network-utility"    # Network diagnostics
 cask "notchnook"              # Notch area customization
 cask "popclip"                # Context-specific actions
 cask "hhkb"                   # Config tool for HHKB
+cask "iina"                   # Free and open-source media player
 cask "raycast"                # Productivity launcher
 cask "rectangle-pro"          # Window snapping
 cask "suspicious-package"     # Installer inspection
@@ -26,11 +28,14 @@ cask "trex"                   # Text extraction
 cask "ghostty"                # Terminal emulator (Native/GPU)
 cask "wezterm@nightly"        # GPU terminal & multiplexer
 cask "zed"                    # Multiplayer code editor
+cask "visual-studio-code"     # Open-source code editor
 cask "ollama-app"             # Local AI model runner
 cask "orbstack"               # Docker Desktop replacement
+cask "orchard"                # Native GUI for Apple Containers
 cask "container"              # Linux containers/VMs
 cask "xcodes-app"             # Xcode version manager
 cask "devtoys"                # Dev utility toolkit
+cask "beekeeper-studio"       # Cross platform SQL editor and database management app
 
 # --- Design & Creative ---
 cask "affinity"               # Image editing & Design
