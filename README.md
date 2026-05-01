@@ -28,11 +28,19 @@ echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
 
 ```bash
 git clone https://github.com/HALQME/dotfiles.git ~/.config/home-manager
+cd ~/.config/home-manager
 ```
 
+環境（ユーザー名とホスト名）に一致する設定が `flake.nix` に定義されている場合、以下のコマンドのみで適用されます。
+
 ```bash
-cd ~/.config/home-manager
-nix run home-manager/master -- switch --flake .
+home-manager switch
+```
+
+一致する設定がない場合や、明示的に指定したい場合は `#` で設定名を指定します。
+
+```bash
+home-manager switch --flake .#hal@MacBook-Pro-M4
 ```
 
 最初の実行時にhome-managerがインストールされるため、2回目以降は、`nix run` を省略することができます。

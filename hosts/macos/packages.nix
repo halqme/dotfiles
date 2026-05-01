@@ -46,6 +46,5 @@
     gat
     ffmpeg
     aria2
-    d2
   ];
 }

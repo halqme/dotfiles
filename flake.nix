@@ -17,29 +17,19 @@
     home-manager,
     nix-index-database,
     ...
-  }: {
+  }: let
+    mkHome = system: homeModule:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          homeModule
+          nix-index-database.homeModules.nix-index
+        ];
+      };
+  in {
     homeConfigurations = {
-      "hal" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        modules = [
-          ./hosts/macos/home.nix
-          nix-index-database.homeModules.nix-index
-        ];
-      };
-      "user" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          ./hosts/linux/home.nix
-          nix-index-database.homeModules.nix-index
-        ];
-      };
-      "suse" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-linux";
-        modules = [
-          ./hosts/linux/home.nix
-          nix-index-database.homeModules.nix-index
-        ];
-      };
+      "hal@MacBook-Pro-M4" = mkHome "aarch64-darwin" ./hosts/macos/home.nix;
+      "ci@actions" = mkHome "x86_64-linux" ./hosts/linux/home.nix;
     };
   };
 }

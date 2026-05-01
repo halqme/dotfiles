@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       lockfile_changed: ${{ steps.check.outputs.changed }}
+      confs: ${{ steps.summary.outputs.confs }}
     steps:
       - uses: actions/checkout@v6
       - uses: nixbuild/nix-quick-install-action@v34
@@ -30,6 +31,15 @@ jobs:
           purge-primary-key: never
       - name: Update flake.lock
         run: nix flake update
+      - name: Generate summary
+        id: summary
+        run: |
+          CONFS=$(nix eval .#homeConfigurations --apply 'c: builtins.mapAttrs (n: v: v.pkgs.system) c' --json | jq -r 'to_entries | .[] | "- `\(.key)` (\(.value)): Passed"')
+          {
+            echo "confs<<EOF"
+            echo "$CONFS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       - name: Check if lockfile changed
         id: check
         run: |
@@ -52,15 +62,12 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - name: hal
+          - name: hal-macos
             os: macos-26
-            target: .#homeConfigurations.hal.activationPackage
-          - name: user
+            target: .#homeConfigurations."hal@MacBook-Pro-M4".activationPackage
+          - name: ci-linux
             os: ubuntu-latest
-            target: .#homeConfigurations.user.activationPackage
-          - name: suse
-            os: ubuntu-24.04-arm
-            target: .#homeConfigurations.suse.activationPackage
+            target: .#homeConfigurations."ci@actions".activationPackage
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -82,15 +89,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: hal
+          - name: hal-macos
             os: macos-26
-            target: .#homeConfigurations.hal.activationPackage
-          - name: user
+            target: .#homeConfigurations."hal@MacBook-Pro-M4".activationPackage
+          - name: ci-linux
             os: ubuntu-latest
-            target: .#homeConfigurations.user.activationPackage
-          - name: suse
-            os: ubuntu-24.04-arm
-            target: .#homeConfigurations.suse.activationPackage
+            target: .#homeConfigurations."ci@actions".activationPackage
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -160,14 +164,11 @@ jobs:
           This is an automated PR to update \`flake.lock\`.
 
           Build Tests:
-          - \`hal\` (aarch64-darwin on macos-26): Passed
-          - \`user\` (x86_64-linux on ubuntu-latest): Passed
-          - \`suse\` (aarch64-linux on ubuntu-24.04-arm): Passed
+          ${{ needs.update.outputs.confs }}
           EOF
           )
 
           PR_EXISTS=$(gh pr list --head "$BRANCH_NAME" --json number --jq '.[0].number')
-
           if [ -z "$PR_EXISTS" ]; then
             gh pr create \
               --title "$PR_TITLE" \
