@@ -45,11 +45,11 @@ jobs:
           name: flake-lock
           path: flake.lock
 
-  build-test:
+  evaluate:
     needs: update
     if: needs.update.outputs.lockfile_changed == 'true' || github.event_name != 'schedule'
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
           - name: hal
@@ -72,10 +72,38 @@ jobs:
           name: flake-lock
 
       - uses: nixbuild/nix-quick-install-action@v34
+      - name: Evaluate configuration
+        run: nix eval '${{ matrix.target }}' --json > /dev/null
+
+  build-test:
+    needs: [update, evaluate]
+    if: needs.update.outputs.lockfile_changed == 'true' || github.event_name != 'schedule'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: hal
+            os: macos-26
+            target: .#homeConfigurations.hal.activationPackage
+          - name: user
+            os: ubuntu-latest
+            target: .#homeConfigurations.user.activationPackage
+          - name: suse
+            os: ubuntu-24.04-arm
+            target: .#homeConfigurations.suse.activationPackage
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Download updated lockfile
+        if: needs.update.outputs.lockfile_changed == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          name: flake-lock
+      - uses: nixbuild/nix-quick-install-action@v34
       - uses: nix-community/cache-nix-action@v7
         with:
-          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-
+          primary-key: nix-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-${{ runner.arch }}-
           gc-max-store-size-linux: 1G
           purge: true
           purge-prefixes: nix-${{ runner.os }}-
@@ -84,11 +112,16 @@ jobs:
           purge-primary-key: never
 
       - name: Build activation package
-        run: nix build ${{ matrix.target }} --print-build-logs
+        id: build
+        run: nix build '${{ matrix.target }}'
 
   create-pr:
-    needs: [update, build-test]
-    if: needs.update.outputs.lockfile_changed == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    needs: [update, evaluate, build-test]
+    if: |
+      needs.update.outputs.lockfile_changed == 'true' &&
+      (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') &&
+      needs.evaluate.result == 'success' &&
+      needs.build-test.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: write
