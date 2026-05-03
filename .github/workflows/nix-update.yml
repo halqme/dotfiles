@@ -64,7 +64,7 @@ jobs:
         include:
           - name: hal-macos
             os: macos-26
-            target: .#homeConfigurations."hal@MacBook-Pro-M4".activationPackage
+            target: .#homeConfigurations."hal@MacBook-Pro-M4.local".activationPackage
           - name: ci-linux
             os: ubuntu-latest
             target: .#homeConfigurations."ci@actions".activationPackage
@@ -91,7 +91,7 @@ jobs:
         include:
           - name: hal-macos
             os: macos-26
-            target: .#homeConfigurations."hal@MacBook-Pro-M4".activationPackage
+            target: .#homeConfigurations."hal@MacBook-Pro-M4.local".activationPackage
           - name: ci-linux
             os: ubuntu-latest
             target: .#homeConfigurations."ci@actions".activationPackage
