@@ -160,8 +160,8 @@ jobs:
         run: |
           BRANCH_NAME="nix-flake-update"
           PR_TITLE="chore(deps): nix flake update"
-          PR_BODY=$(cat <<EOF
-          This is an automated PR to update \`flake.lock\`.
+          PR_BODY=$(cat <<'EOF'
+          This is an automated PR to update `flake.lock`.
 
           Build Tests:
           ${{ needs.update.outputs.confs }}
