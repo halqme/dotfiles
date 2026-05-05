@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     defaultKeymap = "emacs";
@@ -93,25 +97,39 @@
       tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
     };
 
-    initContent = ''
-      alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="gat"
-      alias -s {ts,js,tsx,jsx,html,md}="bun run"
-      alias -s py="python3"
-      alias -s python="python3"
-      alias -s sh="bash"
-      alias -s swift="swift"
-      alias -s cr="crystal"
+    initContent = lib.mkMerge [
+      (
+        lib.mkOrder 500 ''
+          [ -x ~/.local/bin/kiro-cli ] && eval "$(~/.local/bin/kiro-cli init zsh pre --rcfile zshrc)"
+        ''
+      )
+      (
+        lib.mkOrder 1000 ''
+          alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="gat"
+          alias -s {ts,js,tsx,jsx,html,md}="bun run"
+          alias -s py="python3"
+          alias -s python="python3"
+          alias -s sh="bash"
+          alias -s swift="swift"
+          alias -s cr="crystal"
 
-      # Bun completions
-      if [ -s "$HOME/.bun/_bun" ]; then
-        source "$HOME/.bun/_bun"
-      fi
+          # Bun completions
+          if [ -s "$HOME/.bun/_bun" ]; then
+            source "$HOME/.bun/_bun"
+          fi
 
-      # Powerlevel10k - theme configuration
-      # Load after all other initializations
-      if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
-        source "$HOME/.config/zsh/.p10k.zsh"
-      fi
-    '';
+          # Powerlevel10k - theme configuration
+          # Load after all other initializations
+          if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
+            source "$HOME/.config/zsh/.p10k.zsh"
+          fi
+        ''
+      )
+      (
+        lib.mkOrder 1500 ''
+          [ -x ~/.local/bin/kiro-cli ] && eval "$(~/.local/bin/kiro-cli init zsh post --rcfile zshrc)"
+        ''
+      )
+    ];
   };
 }
