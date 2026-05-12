@@ -36,6 +36,7 @@ cask "container"              # Linux containers/VMs
 cask "xcodes-app"             # Xcode version manager
 cask "devtoys"                # Dev utility toolkit
 cask "beekeeper-studio"       # Cross platform SQL editor and database management app
+cask "virtualbuddy"           # Virtualization tool
 
 # --- Design & Creative ---
 cask "affinity"               # Image editing & Design
