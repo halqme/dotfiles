@@ -10,7 +10,6 @@
     ".gitignore_global".source = ../../config/.gitignore_global;
     ".tmux.conf".source = ../../config/tmux.conf;
     ".vimrc".source = ../../config/vim/vimrc;
-    ".ssh/allowed_signers".source = ../../config/ssh/allowed_signers;
   };
 
   xdg.configFile = {

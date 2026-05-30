@@ -18,7 +18,6 @@ cask "notchnook"              # Notch area customization
 cask "popclip"                # Context-specific actions
 cask "hhkb"                   # Config tool for HHKB
 cask "iina"                   # Free and open-source media player
-cask "raycast"                # Productivity launcher
 cask "rectangle-pro"          # Window snapping
 cask "suspicious-package"     # Installer inspection
 cask "tailscale-app"          # Mesh VPN
@@ -26,9 +25,7 @@ cask "trex"                   # Text extraction
 
 # --- Development Tools (GUI) ---
 cask "ghostty"                # Terminal emulator (Native/GPU)
-cask "wezterm@nightly"        # GPU terminal & multiplexer
 cask "zed"                    # Multiplayer code editor
-cask "visual-studio-code"     # Open-source code editor
 cask "ollama-app"             # Local AI model runner
 cask "orbstack"               # Docker Desktop replacement
 cask "orchard"                # Native GUI for Apple Containers

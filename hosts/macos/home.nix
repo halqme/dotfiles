@@ -6,6 +6,7 @@
     ./packages.nix
     ./programs.nix
     ./shell.nix
+    ./ssh.nix
   ];
 
   xdg.enable = true;
@@ -31,7 +32,7 @@
 
     if [ "$CURRENT_HASH" != "$OLD_HASH" ]; then
       echo "Brewfile changed, running brew bundle..."
-      if /opt/homebrew/bin/brew bundle --cleanup --global; then
+      if /opt/homebrew/bin/brew bundle install --global && /opt/homebrew/bin/brew bundle cleanup --global; then
         NEW_HASH=$(/usr/bin/shasum "$BREWFILE" | /usr/bin/cut -d' ' -f1)
         echo "$NEW_HASH" > "$HASH_FILE"
         echo "brew bundle succeeded, hash updated."

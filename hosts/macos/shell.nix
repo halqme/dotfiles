@@ -2,7 +2,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  onePasswordAgentSocket = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+in {
   programs.zsh = {
     enable = true;
     defaultKeymap = "emacs";
@@ -74,7 +76,6 @@
       grep = "rg";
       d = "docker";
       dc = "docker compose";
-      kiro = "kiro-cli";
       orb = "TERM=xterm-256color orb";
       nf = "nix flake";
       nd = "nix develop --command $SHELL";
@@ -100,7 +101,7 @@
     initContent = lib.mkMerge [
       (
         lib.mkOrder 500 ''
-          [ -x ~/.local/bin/kiro-cli ] && eval "$(~/.local/bin/kiro-cli init zsh pre --rcfile zshrc)"
+          export SSH_AUTH_SOCK="${onePasswordAgentSocket}"
         ''
       )
       (
@@ -123,11 +124,6 @@
           if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
             source "$HOME/.config/zsh/.p10k.zsh"
           fi
-        ''
-      )
-      (
-        lib.mkOrder 1500 ''
-          [ -x ~/.local/bin/kiro-cli ] && eval "$(~/.local/bin/kiro-cli init zsh post --rcfile zshrc)"
         ''
       )
     ];

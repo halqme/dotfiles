@@ -1,4 +1,7 @@
-{...}: {
+{...}: let
+  gitEmail = "68320771+HALQME@users.noreply.github.com";
+  gitSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICo87LAYNrYhv5xPCLFgZedT+hBWUBMJrG3WLW6GFnfM";
+in {
   programs.git = {
     enable = true;
 
@@ -8,8 +11,8 @@
     settings = {
       user = {
         name = "HAL";
-        email = "68320771+HALQME@users.noreply.github.com";
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICo87LAYNrYhv5xPCLFgZedT+hBWUBMJrG3WLW6GFnfM";
+        email = gitEmail;
+        signingKey = gitSigningKey;
       };
 
       # ====================================================================
@@ -90,11 +93,14 @@
       };
 
       # ====================================================================
-      # GPG SIGNING (using BitWarden)
+      # SSH SIGNING / VERIFICATION (using 1Password SSH agent)
       # ====================================================================
       gpg = {
         format = "ssh";
-        ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+        ssh = {
+          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+          allowedSignersFile = "~/.ssh/allowed_signers";
+        };
       };
       # ====================================================================
       # GIT LFS (Large File Storage)
@@ -129,4 +135,6 @@
       };
     };
   };
+
+  home.file.".ssh/allowed_signers".text = "${gitEmail} ${gitSigningKey}\n";
 }
