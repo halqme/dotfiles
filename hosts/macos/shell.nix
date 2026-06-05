@@ -100,6 +100,19 @@ in {
 
     initContent = lib.mkMerge [
       (
+        lib.mkOrder 100 ''
+          # Ensure Nix profiles are present even when macOS shell startup differs.
+          path=(
+            "$HOME/.nix-profile/bin"
+            "/etc/profiles/per-user/$USER/bin"
+            "/nix/var/nix/profiles/default/bin"
+            $path
+          )
+          typeset -U path
+          export PATH
+        ''
+      )
+      (
         lib.mkOrder 500 ''
           export SSH_AUTH_SOCK="${onePasswordAgentSocket}"
         ''

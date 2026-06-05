@@ -28,6 +28,11 @@
   };
 
   home.sessionPath = [
+    # Nix profiles
+    "$HOME/.nix-profile/bin"
+    "/etc/profiles/per-user/$USER/bin"
+    "/nix/var/nix/profiles/default/bin"
+
     "$HOME/.local/bin" # Local Packages
     "$HOME/.modular/pkg/packages.modular.com_mojo/bin" # Modular Mojo
     "$HOME/.ghcup/bin" # Haskell GHCup
