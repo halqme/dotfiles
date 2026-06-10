@@ -10,7 +10,7 @@ auto = "auto"
 linker = "isolated"
 
 minimumReleaseAge = 129600
-minimumReleaseAgeExcludes = ["@types/bun", "typescript", "@sourcegraph/amp"]
+minimumReleaseAgeExcludes = ["@types/bun", "typescript"]
 
 [console]
 depth = 3

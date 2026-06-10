@@ -104,7 +104,7 @@ in {
           # Ensure Nix profiles are present even when macOS shell startup differs.
           path=(
             "$HOME/.nix-profile/bin"
-            "/etc/profiles/per-user/$USER/bin"
+            "$HOME/.nix-profile/home-path/bin"
             "/nix/var/nix/profiles/default/bin"
             $path
           )
@@ -141,4 +141,6 @@ in {
       )
     ];
   };
+
+  home.file.".config/zsh/.zprofile".force = true;
 }

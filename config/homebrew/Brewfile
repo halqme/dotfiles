@@ -13,7 +13,6 @@ cask "keka"                   # Archive manager
 cask "keyboardcleantool"      # Keyboard/TouchBar lock
 cask "macs-fan-control"       # Fan control
 cask "name-mangler"           # Multi-file renaming
-cask "neo-network-utility"    # Network diagnostics
 cask "notchnook"              # Notch area customization
 cask "popclip"                # Context-specific actions
 cask "hhkb"                   # Config tool for HHKB
@@ -68,10 +67,8 @@ cask "firefox@developer-edition" # Developer edition of Firefox
 cask "microsoft-edge"
 cask "vivaldi"                # A fast, privacy-focused browser
 cask "duckduckgo"             # Privacy-focused
-cask "tor-browser"            # Security-focused
 
 # --- Communication & Others ---
-cask "signal"                 # Secure messaging
 cask "zoom"                   # Video meetings
 cask "steam"                  # Game distribution
 cask "crossover"              # Windows app emulation
@@ -79,7 +76,6 @@ cask "prismlauncher"          # Minecraft launcher
 cask "downie"                 # Video downloader
 cask "netnewswire"            # RSS reader
 cask "google-drive"           # Google Drive
-cask "burn"                   # CD burning
 
 # --- Fonts ---
 # Japanese Fonts
