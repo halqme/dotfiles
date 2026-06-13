@@ -58,4 +58,12 @@ nix-env --profile ~/.local/state/nix/profiles/home-manager --delete-generations 
 nix-collect-garbage -d
 ```
 
-### 5.
+### 5. Nixが消える場合
+```bash
+export path=(
+  "$HOME/.nix-profile/bin"
+  "$HOME/.nix-profile/home-path/bin"
+  "/nix/var/nix/profiles/default/bin"
+  $path
+)
+```
