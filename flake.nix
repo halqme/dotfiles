@@ -28,7 +28,7 @@
       };
   in {
     homeConfigurations = {
-      "hal@MacBook-Pro-M4.local" = mkHome "aarch64-darwin" ./hosts/macos/home.nix;
+      "hal@MacBook-Pro.local" = mkHome "aarch64-darwin" ./hosts/macos/home.nix;
       "ci@actions" = mkHome "x86_64-linux" ./hosts/linux/home.nix;
     };
   };

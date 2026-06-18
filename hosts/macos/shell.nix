@@ -132,6 +132,11 @@ in {
             source "$HOME/.bun/_bun"
           fi
 
+          # Vite Plus load
+          if [ -s "$HOME/.vite-plus/env" ]; then
+            source "$HOME/.vite-plus/env"
+          fi
+
           # Powerlevel10k - theme configuration
           # Load after all other initializations
           if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
