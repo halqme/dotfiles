@@ -4,6 +4,7 @@
     # PACKAGE MANAGERS & BUILD TOOLS
     # ========================================================================
     BUN_INSTALL = "$HOME/.bun"; # Bun JavaScript runtime
+    DENO_HOME = "$HOME/.deno"; # Deno JavaScript runtime
     PNPM_HOME = "$HOME/.pnpm"; # PNPM package manager cache
 
     # ========================================================================
@@ -38,6 +39,7 @@
     "$HOME/.ghcup/bin" # Haskell GHCup
     "$HOME/.go/bin" # Go binaries
     "$HOME/.bun/bin" # Bun JavaScript runtime
+    "$HOME/.deno/bin" # Deno JavaScript runtime
     "$HOME/.moon/bin" # MoonBit
   ];
 }

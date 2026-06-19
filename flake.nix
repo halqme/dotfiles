@@ -17,19 +17,21 @@
     home-manager,
     nix-index-database,
     ...
-  }: let
-    mkHome = system: homeModule:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [
-          homeModule
-          nix-index-database.homeModules.nix-index
-        ];
+  }: {
+    homeConfigurations = import ./lib/mk-home-configurations.nix {
+      homeDefinitions = {
+        "hal@MacBook-Pro.local" = {
+          system = "aarch64-darwin";
+          homeDirectory = "/Users/hal";
+          modules = [./hosts/macbook/home.nix];
+        };
+        "ci@actions" = {
+          system = "x86_64-linux";
+          homeDirectory = "/home/hal";
+          modules = [./hosts/actions/home.nix];
+        };
       };
-  in {
-    homeConfigurations = {
-      "hal@MacBook-Pro.local" = mkHome "aarch64-darwin" ./hosts/macos/home.nix;
-      "ci@actions" = mkHome "x86_64-linux" ./hosts/linux/home.nix;
+      inherit home-manager nix-index-database nixpkgs;
     };
   };
 }

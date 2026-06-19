@@ -5,9 +5,11 @@ Home Manager を使用した macOS (Main) および Linux (Minimal) の環境設
 ## 構成
 
 - `config/`: 共通のドットファイル（Zsh, Tmux, Neovim, Ghostty 等）
-- `hosts/`: ホストごとの Home Manager 設定
-    - `macos/`: macOS 用のメイン環境
-    - `linux/`: Linux 用の最小限環境（サンプル程度）
+- `modules/common/`: 全環境で共有する Home Manager モジュール
+- `modules/platform/`: OS ごとの差分モジュール
+- `hosts/`: ホストごとの差分設定
+  - `macbook/`: macOS 用のメイン環境
+  - `actions/`: GitHub Actions 用の最小限環境
 
 ## セットアップ
 
@@ -40,7 +42,7 @@ home-manager switch
 一致する設定がない場合や、明示的に指定したい場合は `#` で設定名を指定します。
 
 ```bash
-home-manager switch --flake .#hal@MacBook-Pro-M4
+home-manager switch --flake .#hal@MacBook-Pro.local
 ```
 
 最初の実行時にhome-managerがインストールされるため、2回目以降は、`nix run` を省略することができます。

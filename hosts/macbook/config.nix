@@ -1,22 +1,11 @@
 {...}: {
-  home.username = "hal";
-  home.homeDirectory = "/Users/hal";
-  home.stateVersion = "26.05";
-  programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
   home.file = {
     ".hushlogin".text = "";
-    ".gitignore_global".source = ../../config/.gitignore_global;
-    ".tmux.conf".source = ../../config/tmux.conf;
-    ".vimrc".source = ../../config/vim/vimrc;
   };
 
   xdg.configFile = {
-    "zsh/.p10k.zsh" = {
-      source = ../../config/zsh/.p10k.zsh;
-    };
-
     "homebrew/Brewfile" = {
       source = ../../config/homebrew/Brewfile;
     };
@@ -35,10 +24,6 @@
 
     "ghostty" = {
       source = ../../config/ghostty;
-    };
-
-    ".bunfig.toml" = {
-      source = ../../config/bun/bunfig.toml;
     };
   };
 }

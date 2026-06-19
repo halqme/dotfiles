@@ -8,7 +8,6 @@
     # JavaScript/TypeScript
     nodejs-slim_latest
     nodejs-slim_latest.npm
-    pnpm
     # Go
     go
     # Rust

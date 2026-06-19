@@ -7,7 +7,6 @@
     enableCompletion = true;
     enableVteIntegration = true;
 
-    # Zsh options
     setOptions = [
       "AUTO_PUSHD"
       "HIST_IGNORE_SPACE"
@@ -26,7 +25,6 @@
       size = 10000;
     };
 
-    # Plugins
     plugins = [
       {
         name = "powerlevel10k";
@@ -40,11 +38,9 @@
       }
     ];
 
-    siteFunctions = {
-      mkcd = ''
-        mkdir --parents "$1" && cd "$1"
-      '';
-    };
+    siteFunctions.mkcd = ''
+      mkdir --parents "$1" && cd "$1"
+    '';
 
     shellGlobalAliases = {
       G = "| rg";
@@ -70,18 +66,15 @@
       mkdir = "mkdir -p";
       less = "less -R";
       history = "history -t \"%F %T\"";
-
       untar = "tar -zxvf";
     };
 
     initContent = ''
       alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="gat"
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    '';
-  };
 
-  home.file = {
-    ".p10k.zsh".source = ../../config/zsh/.p10k.zsh;
-    ".tmux.conf".source = ../../config/tmux.conf;
+      if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
+        source "$HOME/.config/zsh/.p10k.zsh"
+      fi
+    '';
   };
 }

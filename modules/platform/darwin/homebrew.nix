@@ -1,16 +1,4 @@
 {lib, ...}: {
-  imports = [
-    ./config.nix
-    ./env.nix
-    ./git.nix
-    ./packages.nix
-    ./programs.nix
-    ./shell.nix
-    ./ssh.nix
-  ];
-
-  xdg.enable = true;
-
   home.activation.brewBundle = lib.hm.dag.entryAfter ["linkGeneration"] ''
     echo "Brewfile Check"
     BREWFILE="$HOME/.config/homebrew/Brewfile"
