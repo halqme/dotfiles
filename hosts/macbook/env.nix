@@ -38,6 +38,7 @@
     "$HOME/.modular/pkg/packages.modular.com_mojo/bin" # Modular Mojo
     "$HOME/.ghcup/bin" # Haskell GHCup
     "$HOME/.go/bin" # Go binaries
+    "$HOME/.pnpm/bin" # PNPM package manager
     "$HOME/.bun/bin" # Bun JavaScript runtime
     "$HOME/.deno/bin" # Deno JavaScript runtime
     "$HOME/.moon/bin" # MoonBit
