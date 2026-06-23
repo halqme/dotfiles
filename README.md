@@ -60,7 +60,20 @@ nix-env --profile ~/.local/state/nix/profiles/home-manager --delete-generations 
 nix-collect-garbage -d
 ```
 
-### 5. Nixが消える場合
+### 5. `/nix` が空になる場合
+
+macOS のアップデート後に `/nix` が空になって見えることがありますが、ほとんどの場合は `Nix Store` の APFS volume が未マウントになっているだけです。
+
+まずは volume の状態を確認します。
+
+```bash
+diskutil apfs list
+```
+
+`Nix Store` が `Not Mounted` になっている場合は、ディスクユーティリティから再マウントすることで対処できます。
+
+再マウント後、もし`nix` コマンドが見つからない場合は以下の通りパスを補完することで対処可能です。
+
 ```bash
 export path=(
   "$HOME/.nix-profile/bin"
