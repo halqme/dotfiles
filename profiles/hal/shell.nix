@@ -67,13 +67,40 @@
       less = "less -R";
       history = "history -t \"%F %T\"";
       untar = "tar -zxvf";
+
+      d = "docker";
+      dc = "docker compose";
+      orb = "TERM=xterm-256color orb";
+      df = "df -h";
+      du = "du -h";
+      calc = "bc -l";
+      datestamp = "date +%Y%m%d%H%M%S";
+      ipinfo = "curl ipinfo.io";
+      weather = "curl wttr.in";
+      port = "lsof -i";
+      repo = "cd $(ghq list --full-path | fzf)";
     };
 
     initContent = ''
       alias -s {png,jpg,PNG,JPG,jpeg,JPEG}="gat"
 
+      alias -s {ts,js,tsx,jsx,html,md}="bun run"
+      alias -s py="python3"
+      alias -s python="python3"
+      alias -s sh="bash"
+      alias -s swift="swift"
+      alias -s cr="crystal"
+
       if [ -f "$HOME/.config/zsh/.p10k.zsh" ]; then
         source "$HOME/.config/zsh/.p10k.zsh"
+      fi
+
+      if [ -s "$HOME/.bun/_bun" ]; then
+        source "$HOME/.bun/_bun"
+      fi
+
+      if [ -s "$HOME/.vite-plus/env" ]; then
+        source "$HOME/.vite-plus/env"
       fi
     '';
   };

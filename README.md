@@ -7,8 +7,9 @@ Home Manager を使用した macOS (Main) および Linux (Minimal) の環境設
 - `config/`: 共通のドットファイル（Zsh, Tmux, Neovim, Ghostty 等）
 - `modules/common/`: 全環境で共有する Home Manager モジュール
 - `modules/platform/`: OS ごとの差分モジュール
+- `profiles/`: ユーザーや用途ごとの共通設定
 - `hosts/`: ホストごとの差分設定
-  - `macbook/`: macOS 用のメイン環境
+  - `macbook/`: 個体差を持つ macOS ホスト設定
   - `actions/`: GitHub Actions 用の最小限環境
 
 ## セットアップ
