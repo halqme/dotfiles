@@ -19,6 +19,7 @@
     ...
   }: {
     homeConfigurations = import ./lib/mk-home-configurations.nix {
+      repoRoot = ./.;
       homeDefinitions = {
         "hal@MacBook-Pro.local" = {
           system = "aarch64-darwin";

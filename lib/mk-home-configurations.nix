@@ -1,4 +1,5 @@
 {
+  repoRoot,
   homeDefinitions,
   home-manager,
   nix-index-database,
@@ -33,6 +34,7 @@
           hostname
           username
           homeDirectory
+          repoRoot
           stateVersion
           ;
       };

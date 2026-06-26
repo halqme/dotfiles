@@ -1,4 +1,4 @@
-{...}: {
+{repoRoot, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   home.file = {
@@ -6,7 +6,7 @@
   };
 
   xdg.configFile = {
-    "homebrew/Brewfile".source = ../../config/homebrew/Brewfile;
-    "karabiner".source = ../../config/karabiner;
+    "homebrew/Brewfile".source = repoRoot + /config/homebrew/Brewfile;
+    "karabiner".source = repoRoot + /config/karabiner;
   };
 }
