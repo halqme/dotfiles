@@ -1,7 +1,7 @@
 {
   // CORE EDITOR SETTINGS
   // Workspace & Session Management
-  "diff_view_style": "split",
+  "diff_view_style": "unified",
   "proxy": "",
   "cli_default_open_behavior": "new_window",
   "document_symbols": "on",
@@ -349,6 +349,7 @@
   "file_scan_inclusions": [".env.*", ".dev.vars.*", "docker-compose.*.yml"],
   // VERSION CONTROL (GIT)
   "git": {
+    "diff_base": "default_branch",
     "blame": {
       "show_avatar": false
     },
@@ -626,6 +627,7 @@
       "show": "always"
     },
     "scrollbar": {
+      "horizontal_scroll": true,
       "show": "auto"
     }
   },
@@ -635,7 +637,7 @@
     "default_width": 240,
     "dock": "right",
     "file_icons": true,
-    "folder_icons": true,
+    "folder_indicator": "icon",
     "indent_guides": {
       "show": "always"
     },
@@ -650,25 +652,9 @@
   },
   // AI & PREDICTIONS
   // Edit Predictions
-  "edit_predictions": {
-    "ollama": {
-      "max_output_tokens": 64,
-      "model": "ornith:9b"
-    },
-    "provider": "zed",
-    "disabled_globs": [
-      "**/.env*",
-      "**/.dev.vars",
-      "**/*.key",
-      "**/*.cart",
-      "**/*.lock",
-      "**/*.crt",
-      "**/secrets.yml"
-    ],
-    "mode": "subtle"
-  },
+  "edit_predictions": null,
   "edit_predictions_disabled_in": [],
-  "show_edit_predictions": true,
+  "show_edit_predictions": false,
   // AI AGENT & ASSISTANCE
   "disable_ai": false,
   "language_models": {
@@ -686,7 +672,7 @@
     },
     "sidebar_side": "right",
     "dock": "right",
-    "flexible": false,
+    "flexible": true,
     "default_profile": "write",
     "inline_assistant_model": {
       "provider": "zed.dev",
@@ -697,7 +683,9 @@
       "provider": "openai-subscribed",
       "model": "gpt-5.6-luna",
       "enable_thinking": false
-    }
+    },
+    "commit_message_include_project_rules": true,
+    "commit_message_instructions": "See how a minor change to your commit message style can make you a better programmer. Use structured commit messages in the format `<type>[optional scope]: <description>`, with types such as `feat`, `fix`, and `docs`, and use `!` or `BREAKING CHANGE:` to explicitly indicate breaking changes."
   },
   "agent_servers": {},
   "context_servers": {},
@@ -745,7 +733,7 @@
     "toolbar": {
       "breadcrumbs": false
     },
-    "working_directory": "current_project_directory",
+    "working_directory": "current_file_directory",
     "scrollbar": {
       "show": "never"
     },
