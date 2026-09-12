@@ -2,7 +2,6 @@ export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAg
 
 path=(
   "$HOME/.local/bin"
-  "$HOME/.swiftly/bin"
   "$HOME/.ghcup/bin"
   "$HOME/.go/bin"
   "$HOME/.pnpm/bin"
@@ -15,6 +14,8 @@ typeset -U path
 export PATH
 
 export EDITOR="nvim"
+
+source $HOME/.swiftly/env.sh
 
 alias -g C='| tee >(pbcopy)'
 alias -g P='| pbpaste'
