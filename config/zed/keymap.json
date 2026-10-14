@@ -23,5 +23,11 @@
     "unbind": {
       "cmd-q": "zed::Quit"
     }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-enter": "assistant::InlineAssist"
+    }
   }
 ]
