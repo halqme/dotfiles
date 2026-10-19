@@ -15,33 +15,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  mise-bootstrap-dry-run:
+  bootstrap:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - name: macos
-            os: macos-latest
-            skip: macos-defaults,macos-launchd-agents,tools,task
-          - name: linux
-            os: ubuntu-latest
-            skip: macos-defaults,macos-launchd-agents,tools,task
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
 
       - name: Install mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
+        with:
+          version: "2026.10.14"
+          install: false
 
-      - name: Trust config
-        run: mise trust
+      - name: Install Zsh for shell checks
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y zsh
 
-      - name: Dry-run bootstrap
-        env:
-          MISE_CONFIG_FILE: ${{ github.workspace }}/mise/config.toml
-        run: mise bootstrap --dry-run --yes --skip ${{ matrix.skip }}
-
-      - name: Check managed dotfiles status
-        env:
-          MISE_CONFIG_FILE: ${{ github.workspace }}/mise/config.toml
-        run: mise dotfiles status
+      - name: Run isolated bootstrap checks
+        run: python3 -B tests/test_bootstrap.py

@@ -32,6 +32,17 @@ zsh_source_homebrew() {
   zsh_source_if_exists "$REPLY"
 }
 
+zsh_plugin_path() {
+  zsh_homebrew_path "$1" "$2" && return 0
+  REPLY="$HOME/.local/share/zsh/$1/$2"
+  [[ -r $REPLY ]]
+}
+
+zsh_source_plugin() {
+  zsh_plugin_path "$1" "$2" || return 1
+  zsh_source_if_exists "$REPLY"
+}
+
 zsh_cache_path() {
   REPLY="$ZSH_CACHE_DIR/$1"
 }

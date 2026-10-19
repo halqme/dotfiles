@@ -1,0 +1,37 @@
+[user]
+    name = HAL
+    email = 68320771+HALQME@users.noreply.github.com
+    useConfigOnly = true
+[init]
+    defaultBranch = main
+[core]
+    excludesfile = ~/.gitignore_global
+    pager = delta
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+[merge]
+    conflictStyle = zdiff3
+[push]
+    default = simple
+    autoSetupRemote = true
+[fetch]
+    prune = true
+[rebase]
+    autoSquash = true
+    autoStash = true
+[rerere]
+    enabled = true
+[interactive]
+    diffFilter = delta --color-only
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    unstage = reset HEAD --
+    last = log -1 HEAD

@@ -37,5 +37,8 @@ jobs:
 
       - uses: nixbuild/nix-quick-install-action@v34
 
+      - name: Run Home Manager checks
+        run: nix flake check --no-write-lock-file --print-build-logs
+
       - name: Build Home Manager activation package
         run: nix build '${{ matrix.target }}'

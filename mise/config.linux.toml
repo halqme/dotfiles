@@ -1,7 +1,13 @@
-# Linux / CI — CLI packages via apt
+# Linux CLI packages: mise skips managers unavailable on the current machine.
+min_version = "2026.10.14"
 
 [dotfiles]
-"~/.config/zsh/platform" = { source = "../config/zsh/linux", mode = "symlink" }
+"~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/linux", mode = "symlink" }
+"~/.gitconfig/dotfiles" = { block = '''
+[include]
+    path = ~/.config/git/dotfiles.gitconfig
+''' }
+"~/.config/git/dotfiles.gitconfig" = { source = "~/.dotfiles/config/git/config", mode = "symlink" }
 
 [bootstrap.packages]
 "apt:age" = "latest"
@@ -15,3 +21,70 @@
 "apt:jq" = "latest"
 "apt:neovim" = "latest"
 "apt:ripgrep" = "latest"
+"apt:git" = "latest"
+"apt:git-delta" = "latest"
+"apt:git-lfs" = "latest"
+"apt:libatomic1" = "latest"
+"apt:tmux" = "latest"
+"apt:zoxide" = "latest"
+"apt:zsh" = "latest"
+
+"zypper:age" = "latest"
+"zypper:aria2" = "latest"
+"zypper:curl" = "latest"
+"zypper:fd" = "latest"
+"zypper:fzf" = "latest"
+"zypper:git-core" = "latest"
+"zypper:git-delta" = "latest"
+"zypper:git-lfs" = "latest"
+"zypper:github-cli" = "latest"
+"zypper:jq" = "latest"
+"zypper:libatomic1" = "latest"
+"zypper:make" = "latest"
+"zypper:neovim" = "latest"
+"zypper:pkgconf-pkg-config" = "latest"
+"zypper:podman" = "latest"
+"zypper:ripgrep" = "latest"
+"zypper:tmux" = "latest"
+"zypper:zoxide" = "latest"
+"zypper:zsh" = "latest"
+
+[bootstrap.repos]
+"~/.local/share/zsh/powerlevel10k" = { url = "https://github.com/romkatv/powerlevel10k.git", ref = "v1.20.0" }
+"~/.local/share/zsh/fzf-tab" = { url = "https://github.com/Aloxaf/fzf-tab.git" }
+"~/.local/share/zsh/zsh-autosuggestions" = { url = "https://github.com/zsh-users/zsh-autosuggestions.git", ref = "v0.7.1" }
+"~/.local/share/zsh/zsh-fast-syntax-highlighting" = { url = "https://github.com/zdharma-continuum/fast-syntax-highlighting.git" }
+
+[tasks.bootstrap]
+description = "Install user-local development tools"
+depends = ["install:hermes", "install:vite-plus"]
+
+[tasks."install:hermes"]
+description = "Install Hermes Agent CLI without browser or computer-use tools"
+shell = "bash -c"
+run = '''
+set -euo pipefail
+if command -v hermes >/dev/null 2>&1 || [ -x "$HOME/.local/bin/hermes" ]; then
+  echo "Hermes is already installed; use hermes update to update it."
+  exit 0
+fi
+installer="$(mktemp)"
+trap 'rm -f "$installer"' EXIT
+curl --proto '=https' --tlsv1.2 -fsSL https://hermes-agent.nousresearch.com/install.sh -o "$installer"
+bash "$installer" --non-interactive --skip-browser --skip-computer-use
+'''
+
+[tasks."install:vite-plus"]
+description = "Install Vite Plus without taking over the global Node.js runtime"
+shell = "bash -c"
+run = '''
+set -euo pipefail
+if command -v vp >/dev/null 2>&1 || [ -x "$HOME/.vite-plus/bin/vp" ]; then
+  echo "Vite Plus is already installed; use vp upgrade to update it."
+  exit 0
+fi
+installer="$(mktemp)"
+trap 'rm -f "$installer"' EXIT
+curl --proto '=https' --tlsv1.2 -fsSL https://vite.plus -o "$installer"
+VP_HOME="$HOME/.vite-plus" VP_NODE_MANAGER=no bash "$installer"
+'''

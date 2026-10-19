@@ -13,6 +13,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nix-index-database,
@@ -34,5 +35,13 @@
       };
       inherit home-manager nix-index-database nixpkgs;
     };
+
+    checks = nixpkgs.lib.genAttrs ["aarch64-darwin" "x86_64-linux"] (system:
+      import ./tests {
+        pkgs = nixpkgs.legacyPackages.${system};
+        repoRoot = ./.;
+        inherit (self) homeConfigurations;
+        inherit home-manager nix-index-database nixpkgs;
+      });
   };
 }

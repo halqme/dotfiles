@@ -2,10 +2,13 @@
 # GUI applications and fonts are managed by ../Brewfile via `brew bundle`.
 
 [dotfiles]
-"~/.config/zsh/platform" = { source = "../config/zsh/darwin", mode = "symlink" }
-"~/.config/jj/config.toml" = { source = "../config/jj/config.toml", mode = "symlink" }
-"~/.config/nushell" = { source = "../config/nushell", mode = "symlink" }
-"~/.config/homebrew/Brewfile" = { source = "../config/homebrew/Brewfile", mode = "symlink" }
+"~/.config/karabiner" = { source = "~/.dotfiles/config/karabiner", mode = "symlink" }
+"~/.config/home-manager" = { source = "~/.dotfiles/config/home-manager", mode = "symlink" }
+"~/.config/nix" = { source = "~/.dotfiles/config/nix", mode = "symlink" }
+"~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/darwin", mode = "symlink" }
+"~/.config/jj/config.toml" = { source = "~/.dotfiles/config/jj/config.toml", mode = "symlink" }
+"~/.config/nushell" = { source = "~/.dotfiles/config/nushell", mode = "symlink" }
+"~/.config/homebrew/Brewfile" = { source = "~/.dotfiles/config/homebrew/Brewfile", mode = "symlink" }
 
 # macOS user defaults. Applied explicitly with `mise bootstrap macos defaults apply`.
 [bootstrap.macos.dock]

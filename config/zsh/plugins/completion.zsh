@@ -18,8 +18,8 @@ zsh_completion_cache_is_stale() {
 _zsh_load_completion() {
   zsh_completion_dir=''
   zsh_fzf_tab_plugin=''
-  zsh_homebrew_path zsh-completions . && zsh_completion_dir=$REPLY
-  zsh_homebrew_path fzf-tab share/fzf-tab/fzf-tab.zsh && zsh_fzf_tab_plugin=$REPLY
+  zsh_plugin_path zsh-completions . && zsh_completion_dir=$REPLY
+  zsh_plugin_path fzf-tab fzf-tab.zsh && zsh_fzf_tab_plugin=$REPLY
   zsh_completion_watch "$zsh_completion_dir"
   zsh_completion_watch "$zsh_fzf_tab_plugin"
   [[ -n $zsh_completion_dir ]] && fpath=("$zsh_completion_dir" $fpath)

@@ -24,9 +24,14 @@ alias ..='cd ..'
 alias ~='cd ~'
 alias c='clear'
 alias grep='rg'
-alias ls='eza --classify --git-repos --icons --short-nix --no-quotes --color --all --git-ignore'
-alias ll='eza --classify --git-repos --icons --short-nix --no-quotes --color --long'
-alias la='eza --classify --git-repos --icons --short-nix --no-quotes --color --long --all'
+if (( $+commands[eza] )); then
+  alias ls='eza --classify --git-repos --icons --short-nix --no-quotes --color --all --git-ignore'
+  alias ll='eza --classify --git-repos --icons --short-nix --no-quotes --color --long'
+  alias la='eza --classify --git-repos --icons --short-nix --no-quotes --color --long --all'
+else
+  alias ll='ls -lh'
+  alias la='ls -lah'
+fi
 alias nd='mise exec -- $SHELL'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -35,17 +40,23 @@ alias mkdir='mkdir -p'
 alias less='less -R'
 alias history='history -t "%F %T"'
 alias untar='tar -zxvf'
-alias d='docker'
+if (( $+commands[docker] )); then
+  alias d='docker'
+elif (( $+commands[podman] )); then
+  alias d='podman'
+fi
 alias code='zed'
 alias orb='TERM=xterm-256color orb'
 alias df='df -h'
-alias du='dust -h'
+(( ! $+commands[dust] )) || alias du='dust -h'
 alias datestamp='date +%Y%m%d%H%M%S'
 alias now='date +%Y/%m/%d\ %H:%M\;%S'
 alias iso='date +%Y-%m-%dT%H:%M:%S%z'
 alias ipinfo='curl ipinfo.io'
 alias weather='curl wttr.in'
-alias prj='cd $(ghq list --full-path | fzf)'
+if (( $+commands[ghq] && $+commands[fzf] )); then
+  alias prj='cd $(ghq list --full-path | fzf)'
+fi
 alias agec='age -R ~/.config/age/recipient.txt'
 alias aged='age --decrypt -i ~/.config/age/identity.age'
 
