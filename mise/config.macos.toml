@@ -1,6 +1,9 @@
 # macOS-specific bootstrap packages.
 # GUI applications and fonts are managed by ../Brewfile via `brew bundle`.
 
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
 [dotfiles]
 "~/.config/karabiner" = { source = "~/.dotfiles/config/karabiner", mode = "symlink" }
 "~/.config/home-manager" = { source = "~/.dotfiles/config/home-manager", mode = "symlink" }

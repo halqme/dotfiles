@@ -39,7 +39,7 @@ mise installs global CLI packages through the available manager: `zypper` on Tum
 
 ### Zsh and Powerlevel10k
 
-Bootstrap makes Zsh the login shell, links the existing `.p10k.zsh`, and clones Powerlevel10k, fzf-tab, autosuggestions, and fast-syntax-highlighting under `~/.local/share/zsh`. Linux loads those plugins directly; macOS keeps using Homebrew. Existing shell startup files are preserved outside mise's marked blocks. A conflicting whole-file dotfile stops the run rather than being overwritten; review and merge it manually.
+Bootstrap sets the login shell to `/usr/bin/zsh` on Linux and `/bin/zsh` on macOS. The selected path must be executable and listed in `/etc/shells`. On Linux, bootstrap links the existing `.p10k.zsh` and clones Powerlevel10k, fzf-tab, autosuggestions, and fast-syntax-highlighting under `~/.local/share/zsh`. Linux loads those plugins directly; macOS keeps using Homebrew. Existing shell startup files are preserved outside mise's marked blocks. A conflicting whole-file dotfile stops the run rather than being overwritten; review and merge it manually.
 
 Log out and back in after applying. Choose a Nerd Font in your terminal for the existing p10k icons; for SSH, the font is configured on the client. Run `p10k configure` only if you want to change the shared prompt configuration.
 

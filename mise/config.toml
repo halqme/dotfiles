@@ -1,9 +1,6 @@
 [settings]
 dotfiles.root = "~/.dotfiles"
 
-[bootstrap.user]
-login_shell = "/bin/zsh"
-
 [bootstrap.mise_shell_activate]
 zsh = true
 

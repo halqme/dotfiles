@@ -1,6 +1,9 @@
 # Linux CLI packages: mise skips managers unavailable on the current machine.
 min_version = "2026.10.14"
 
+[bootstrap.user]
+login_shell = "/usr/bin/zsh"
+
 [dotfiles]
 "~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/linux", mode = "symlink" }
 "~/.gitconfig/dotfiles" = { block = '''

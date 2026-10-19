@@ -204,6 +204,14 @@ class BootstrapTests(unittest.TestCase):
         self.assert_link(".config/zsh/platform", "config/zsh/" + (
             "darwin" if expected == "macos" else "linux"))
 
+    def test_login_shell_paths_follow_platform_configuration(self):
+        for selected, expected in (("linux", "/usr/bin/zsh"), ("macos", "/bin/zsh")):
+            with self.subTest(platform=selected):
+                status = json.loads(self.mise(
+                    "bootstrap", "user", "status", "--json", selected=selected,
+                ).stdout)
+                self.assertEqual(status["login_shell"]["shell"], expected)
+
     def test_linux_bootstrap_preserves_local_settings_and_is_idempotent(self):
         originals = {
             ".zshenv": "export KEEP_ZSHENV=yes\n",
