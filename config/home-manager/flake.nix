@@ -22,7 +22,7 @@
     homeConfigurations = import ./lib/mk-home-configurations.nix {
       repoRoot = ./.;
       homeDefinitions = {
-        "hal@MacBook-Pro.local" = {
+        "hal@macbook-pro-m4.local" = {
           system = "aarch64-darwin";
           homeDirectory = "/Users/hal";
           modules = [./hosts/macbook/home.nix];
