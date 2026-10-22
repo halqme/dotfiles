@@ -629,6 +629,7 @@
   },
   // Outline Panel
   "outline_panel": {
+    "multi_buffer_hide_symbols": true,
     "button": true,
     "default_width": 240,
     "dock": "right",
@@ -660,6 +661,15 @@
     }
   },
   "agent": {
+    "sandbox_permissions": {
+      "network_hosts": [
+        "crates.io",
+        "static.crates.io",
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com"
+      ]
+    },
     "tool_permissions": {
       "tools": {
         "terminal": {
@@ -668,9 +678,8 @@
       }
     },
     "default_model": {
-      "effort": "high",
-      "provider": "zed.dev",
-      "model": "claude-sonnet-5-5",
+      "provider": "ollama",
+      "model": "beam:cloud",
       "enable_thinking": true
     },
     "dock": "right",

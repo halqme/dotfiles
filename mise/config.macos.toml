@@ -1,5 +1,5 @@
-# macOS-specific bootstrap packages.
-# GUI applications and fonts are managed by ../Brewfile via `brew bundle`.
+# macOS development tool defaults and Homebrew bootstrap packages.
+# GUI applications and fonts are managed by ../config/homebrew/Brewfile via `brew bundle`.
 
 [bootstrap.user]
 login_shell = "/bin/zsh"
@@ -21,7 +21,9 @@ show_recents = false
 mru_spaces = true
 
 [bootstrap.macos.finder]
+show_all_files =  true
 show_pathbar = true
+show_status_bar = true
 show_extensions_warning = false
 preferred_view_style = "column"
 
@@ -31,17 +33,20 @@ initial_key_repeat = 15
 fn_state = true
 
 [bootstrap.macos.trackpad]
-tap_to_click = false
-three_finger_drag = false
+tap_to_click = true
+three_finger_drag = true
+
+[tools]
+go = "latest"
+nim = "latest"
+zig = "0.17.0"
+
+aube = "latest"
 
 [bootstrap.packages]
-"brew:act" = "latest"
 "brew:age" = "latest"
 "brew:aria2" = "latest"
 "brew:bottom" = "latest"
-"brew:carapace" = "latest"
-"brew:crystal" = "latest"
-"brew:crystalline" = "latest"
 "brew:dust" = "latest"
 "brew:eza" = "latest"
 "brew:fd" = "latest"
@@ -52,19 +57,13 @@ three_finger_drag = false
 "brew:gh" = "latest"
 "brew:ghq" = "latest"
 "brew:git-delta" = "latest"
-"brew:go" = "latest"
 "brew:htop" = "latest"
-"brew:jq" = "latest"
 "brew:just" = "latest"
-"brew:jj" = "latest"
 "brew:lazygit" = "latest"
 "brew:neovim" = "latest"
 "brew:nushell" = "latest"
-"brew:nim" = "latest"
 "brew:powerlevel10k" = "latest"
 "brew:ripgrep" = "latest"
-"brew:rust" = "latest"
-"brew:tmux" = "latest"
 "brew:yazi" = "latest"
 "brew:zoxide" = "latest"
 "brew:zsh-autosuggestions" = "latest"

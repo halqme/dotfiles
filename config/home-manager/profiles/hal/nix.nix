@@ -3,7 +3,6 @@
     # Ensure Nix profiles are present even when macOS shell startup differs.
     path=(
       "$HOME/.nix-profile/bin"
-      "$HOME/.nix-profile/home-path/bin"
       "/nix/var/nix/profiles/default/bin"
       $path
     )

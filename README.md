@@ -6,11 +6,11 @@
 | --- | --- |
 | `mise/config.toml` | Shared dotfiles and Zsh activation |
 | `mise/config.linux.toml` | Linux packages, Git defaults, Zsh plugins, Hermes Agent, Vite Plus |
-| `mise/config.macos.toml` | Homebrew packages, macOS settings, links for Nix / Home Manager |
+| `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, links for Nix / Home Manager |
 | `config/` | Shell, prompt, editor, and terminal configuration |
 | `config/home-manager/` | Optional Home Manager configuration |
 
-Platform configs load automatically through `mise/miserc.toml`. Language runtimes belong in each project's `mise.toml`, not the global configuration.
+Platform configs load automatically through `mise/miserc.toml`. On macOS, mise provides personal defaults for Go, Nim, and Rust; each project's `mise.toml` can select its own versions.
 
 ## Linux setup (Tumbleweed, no Nix)
 
@@ -68,7 +68,9 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-The macOS task installs GUI applications and fonts through `brew bundle`. The separate Home Manager setup is only needed for the generated Git/SSH and Nix-specific configuration used on the existing Macs:
+Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. The macOS task installs GUI applications and fonts through `brew bundle`. Removing a Formula from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
+
+The separate Home Manager setup is only needed for the generated Git/SSH and Nix-specific configuration used on the existing Macs:
 
 ```sh
 home-manager switch --flake ~/.dotfiles/config/home-manager#hal@MacBook-Pro.local
