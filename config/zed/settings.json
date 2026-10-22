@@ -517,14 +517,6 @@
         "coloring": "disabled"
       }
     },
-    "Crystal": {
-      "formatter": {
-        "external": {
-          "command": "crystal",
-          "arguments": ["tool", "format", "-"]
-        }
-      }
-    },
     "Markdown": {
       "format_on_save": "on",
       "use_on_type_format": true,
