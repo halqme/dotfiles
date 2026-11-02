@@ -1,0 +1,3 @@
+[package-manager]
+supports_version_pins = true
+os = ["macos", "linux"]

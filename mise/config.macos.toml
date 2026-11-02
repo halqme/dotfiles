@@ -71,7 +71,7 @@ aube = "latest"
 
 [tasks.bootstrap]
 description = "Post-bootstrap machine setup"
-depends = ["install:vite-plus", "install:vp-globals", "brew-bundle"]
+depends = ["install:vite-plus", "brew-bundle"]
 
 [tasks."brew-bundle"]
 description = "Install Brewfile apps"

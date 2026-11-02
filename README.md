@@ -4,7 +4,7 @@
 
 | Component | Responsibility |
 | --- | --- |
-| `mise/config.toml` | Shared dotfiles, Zsh activation, Vite+, and global package tasks |
+| `mise/config.toml` | Shared dotfiles, Zsh activation, Vite+, and global packages |
 | `mise/config.linux.toml` | Linux packages, Git defaults, and Zsh plugins |
 | `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, links for Nix / Home Manager |
 | `config/` | Shell, prompt, editor, terminal, and global agent instructions |
@@ -31,7 +31,7 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-Use **mise 2026.10.14 or newer** for `zypper:` support. Read the config and dry run before applying; bootstrap downloads and executes the official Vite+ installer, then installs the global packages declared in `config/vite-plus/globals.txt`. Use `--skip task` on the apply command to leave those applications out.
+Use **mise 2026.10.14 or newer** for `zypper:` support. Read the config and dry run before applying. Bootstrap installs the Vite+ CLI, then installs the `vp:` entries in `[bootstrap.packages]`. Use `--skip packages` to leave package installation out.
 
 The initial `MISE_CONFIG_DIR` selects both shared and platform configuration. After the links are installed, plain `mise bootstrap` loads them from `~/.config/mise`. `MISE_CONFIG_FILE` selects only one file, so do not use it for the initial platform bootstrap.
 
@@ -47,17 +47,12 @@ Git defaults on Linux include the HAL identity from `config/git/config`, delta, 
 
 ### Global agent instructions and Vite+
 
-Bootstrap links `config/agents/AGENTS.md` to `~/.fx/AGENTS.md` and `~/.claude/CLAUDE.md`. Both platforms then run:
-
-```sh
-mise run install:vite-plus
-mise run install:vp-globals
-```
+Bootstrap links `config/agents/AGENTS.md` to `~/.fx/AGENTS.md` and `~/.claude/CLAUDE.md`. Before installing packages, it links `mise/plugins/vp` and installs the Vite+ CLI when `vp` is missing.
 
 - [Vite+](https://viteplus.dev/guide/) uses the official installer under `~/.vite-plus`. Bootstrap leaves its global Node.js takeover disabled. The existing Zsh configuration sources `~/.vite-plus/env`; use `vp env on` if you want Vite+ to own global Node.js management.
-- `config/vite-plus/globals.txt` lists packages for `vp install -g`. A bare name is installed when it is missing and is otherwise left alone. `name@version` is installed when it is missing or the installed version differs. Removing a line does not uninstall a package.
+- Global CLIs are `vp:` entries in `[bootstrap.packages]`, alongside the Homebrew and zypper entries. `"latest"` is installed only when missing. An exact version is installed when it is missing or the installed version differs. Removing an entry does not uninstall the package.
 
-An existing Vite+ install is left alone. Update it with `vp upgrade`, and update global packages with `vp update -g`. Bootstrap neither copies tokens nor migrates conversation data.
+An existing Vite+ install is left alone. Update it with `vp upgrade`, and update unpinned global packages with `vp update -g` or `mise bootstrap packages upgrade`. Bootstrap neither copies tokens nor migrates conversation data.
 
 ## macOS setup
 
@@ -68,7 +63,7 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. Bootstrap also installs Vite+, the global packages in `config/vite-plus/globals.txt`, and the GUI applications and fonts in the Brewfile. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
+Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. Bootstrap also installs Vite+, the `vp:` global packages, and the GUI applications and fonts in the Brewfile. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
 
 The separate Home Manager setup is only needed for the generated Git/SSH and Nix-specific configuration used on the existing Macs:
 

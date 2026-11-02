@@ -45,6 +45,7 @@ class BootstrapTests(unittest.TestCase):
             "miserc.toml",
         ):
             shutil.copy2(ROOT / "mise" / name, self.config / name)
+        shutil.copytree(ROOT / "mise" / "plugins", self.config / "plugins")
         self.repo.joinpath("config").symlink_to(
             ROOT / "config", target_is_directory=True
         )
@@ -220,19 +221,34 @@ class BootstrapTests(unittest.TestCase):
             """)
         )
 
-    def declared_vp_globals(self):
-        specs = []
-        for raw in (ROOT / "config/vite-plus/globals.txt").read_text().splitlines():
-            spec = raw.split("#", 1)[0].strip()
-            if spec:
-                specs.append(spec)
-        return specs
+    def set_vp_packages(self, packages):
+        path = self.config / "config.toml"
+        lines = [
+            line
+            for line in path.read_text().splitlines(keepends=True)
+            if not line.startswith('"vp:')
+        ]
+        headers = [
+            index
+            for index, line in enumerate(lines)
+            if line.strip() == "[bootstrap.packages]"
+        ]
+        if len(headers) != 1:
+            self.fail("shared config must contain one [bootstrap.packages] table")
+        header_at = headers[0]
+        lines[header_at + 1 : header_at + 1] = [
+            f'"vp:{name}" = "{version}"\n' for name, version in packages
+        ]
+        path.write_text("".join(lines))
 
     def vp_invocations(self):
         path = self.records / "vp-args"
         if not path.exists():
             return []
         return path.read_text().splitlines()
+
+    def vp_installs(self):
+        return [line for line in self.vp_invocations() if line.startswith("install ")]
 
     def write_executable(self, name, content):
         path = self.bin / name
@@ -422,7 +438,7 @@ class BootstrapTests(unittest.TestCase):
         tasks = json.loads(self.mise("tasks", "ls", "--json", selected="macos").stdout)
         names = {task["name"] for task in tasks}
         self.assertIn("install:vite-plus", names)
-        self.assertIn("install:vp-globals", names)
+        self.assertNotIn("install:vp-globals", names)
         self.assertIn("brew-bundle", names)
         self.assertNotIn("install:hermes", names)
 
@@ -575,85 +591,114 @@ class BootstrapTests(unittest.TestCase):
                 "no",
             ],
         )
-        specs = self.declared_vp_globals()
-        self.assertTrue(specs)
-        self.assertEqual(
-            [line for line in self.vp_invocations() if line.startswith("install ")],
-            ["install -g " + " ".join(specs)],
-        )
-        self.assertEqual(
-            (self.records / "vp-installed").read_text().splitlines(), specs
-        )
         downloads = self.download_records()
         self.assertEqual({item["url"] for item in downloads}, {"https://vite.plus"})
         for item in downloads:
             self.assertIn("=https", item["args"])
             self.assertIn("--tlsv1.2", item["args"])
         self.assert_installers_cleaned_up()
+        self.assertEqual(self.vp_installs(), [])
         self.mise("bootstrap", "--only", "task", "--yes", selected="linux")
         self.assertEqual(
             self.download_records(), downloads, "Existing tools were downloaded again"
         )
+        self.assertEqual(self.vp_installs(), [])
+
+    def test_vp_packages_install_once_and_upgrade_only_unpinned(self):
+        self.set_vp_packages([("demo-tool", "latest"), ("pinned-tool", "1.2.3")])
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
         self.assertEqual(
-            [line for line in self.vp_invocations() if line.startswith("install ")],
-            ["install -g " + " ".join(specs)],
+            sorted(self.vp_installs()),
+            ["install -g demo-tool", "install -g pinned-tool@1.2.3"],
+        )
+        downloads = self.download_records()
+        installs = self.vp_installs()
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
+        self.assertEqual(self.download_records(), downloads)
+        self.assertEqual(self.vp_installs(), installs)
+        before = len(self.vp_invocations())
+        self.mise("bootstrap", "packages", "upgrade", "--yes", selected="linux")
+        new = self.vp_invocations()[before:]
+        self.assertIn("update -g demo-tool", new)
+        self.assertFalse(any(line.startswith("install ") for line in new))
+        self.assertFalse(
+            any("pinned-tool" in line and line.startswith("update ") for line in new)
         )
 
-    def test_vp_globals_keep_unlisted_packages_and_reconcile_exact_versions(self):
-        self.mise("run", "--skip-tools", "install:vite-plus", selected="linux")
+    def test_vp_packages_reconcile_pins_and_keep_unlisted_packages(self):
+        self.set_vp_packages([("pinned-tool", "1.2.3"), ("floating-tool", "latest")])
         state = self.records / "vp-installed"
-        state.write_text("kept-tool@1.2.3\nagent-browser@0.1.0\n")
-        custom = self.work / "globals.txt"
-        custom.write_text(
-            "# comment\nagent-browser@0.1.0\nagent-desktop@latest\nkept-tool@9.9.9\n"
-        )
-        self.mise(
-            "run",
-            "--skip-tools",
-            "install:vp-globals",
-            selected="linux",
-            overrides={"VP_GLOBALS_FILE": str(custom)},
-        )
-        self.assertEqual(
-            [line for line in self.vp_invocations() if line.startswith("install ")],
-            ["install -g agent-desktop@latest kept-tool@9.9.9"],
-        )
+        state.write_text("pinned-tool@1.2.3\nkept-tool@9.9.9\n")
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
+        self.assertEqual(self.vp_installs(), ["install -g floating-tool"])
         self.assertEqual(
             state.read_text().splitlines(),
-            [
-                "agent-browser@0.1.0",
-                "agent-desktop@latest",
-                "kept-tool@9.9.9",
-            ],
+            ["pinned-tool@1.2.3", "kept-tool@9.9.9", "floating-tool"],
         )
-        before = self.vp_invocations()
-        self.mise(
-            "run",
-            "--skip-tools",
-            "install:vp-globals",
-            selected="linux",
-            overrides={"VP_GLOBALS_FILE": str(custom)},
-        )
+        self.set_vp_packages([("pinned-tool", "4.0.0"), ("floating-tool", "latest")])
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
         self.assertEqual(
-            [line for line in self.vp_invocations() if line.startswith("install ")],
-            [line for line in before if line.startswith("install ")],
+            self.vp_installs(),
+            ["install -g floating-tool", "install -g pinned-tool@4.0.0"],
         )
+        self.assertIn("kept-tool@9.9.9", state.read_text().splitlines())
+        installs = self.vp_installs()
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
+        self.assertEqual(self.vp_installs(), installs)
+        self.assertIn("kept-tool@9.9.9", state.read_text().splitlines())
 
-    def test_vp_globals_reject_a_missing_list_or_unreadable_inventory(self):
+    def test_vp_packages_fail_without_installing_and_can_retry(self):
+        self.set_vp_packages([("demo-tool", "latest")])
         self.mise(
-            "run",
-            "--skip-tools",
-            "install:vp-globals",
+            "plugins",
+            "link",
+            "-f",
+            "vp",
+            str(self.config / "plugins" / "vp"),
+        )
+        self.mise(
+            "bootstrap", "packages", "apply", "--yes", selected="linux", success=False
+        )
+        self.assertEqual(self.vp_installs(), [])
+        self.assertFalse((self.records / "vp-installed").exists())
+
+        self.mise("run", "--skip-tools", "install:vite-plus", selected="linux")
+        broken = self.home / ".vite-plus" / "bin" / "vp"
+        broken.write_text(
+            "#!/bin/sh\nprintf '%s\\n' \"$*\" >> \"$TEST_RECORDS/vp-args\"\nprintf 'nope\\n'\nexit 0\n"
+        )
+        broken.chmod(0o755)
+        self.mise(
+            "bootstrap", "packages", "apply", "--yes", selected="linux", success=False
+        )
+        self.assertEqual(self.vp_installs(), [])
+        self.assertFalse((self.records / "vp-installed").exists())
+
+        broken.unlink()
+        self.mise("bootstrap", "--only", "packages", "--yes", selected="linux")
+        self.assertEqual(self.vp_installs(), ["install -g demo-tool"])
+
+    def test_vp_package_dry_run_does_not_install(self):
+        self.set_vp_packages([("demo-tool", "latest")])
+        self.mise("run", "--skip-tools", "install:vite-plus", selected="linux")
+        self.mise(
+            "plugins",
+            "link",
+            "-f",
+            "vp",
+            str(self.config / "plugins" / "vp"),
+        )
+        self.mise(
+            "bootstrap",
+            "packages",
+            "apply",
+            "--dry-run",
+            "--yes",
             selected="linux",
-            overrides={"VP_GLOBALS_FILE": str(self.work / "missing.txt")},
-            success=False,
         )
-        self.assertFalse((self.records / "vp-installed").exists())
-        self.write_executable("vp", "#!/bin/sh\nprintf 'nope\\n'\nexit 0\n")
-        self.mise(
-            "run", "--skip-tools", "install:vp-globals", selected="linux", success=False
-        )
-        self.assertFalse((self.records / "vp-installed").exists())
+        self.assertEqual(self.vp_installs(), [])
+        state = self.records / "vp-installed"
+        self.assertFalse(state.exists() and state.read_text().strip())
 
     def test_tools_already_on_path_are_not_downloaded(self):
         self.write_executable(

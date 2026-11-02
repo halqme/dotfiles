@@ -45,3 +45,30 @@ GHQ_ROOT = "{{ env.HOME }}/Projects"
 _ZO_DATA_DIR = "{{ env.HOME }}/.local/share"
 OLLAMA_FLASH_ATTENTION = "1"
 OLLAMA_CONTEXT_LENGTH = "64000"
+
+[bootstrap.hooks.pre-packages]
+description = "Link the Vite+ package plugin and install the Vite+ CLI"
+run = '''
+mise plugins link -f vp "$HOME/.dotfiles/mise/plugins/vp"
+mise run --skip-tools install:vite-plus
+'''
+
+[bootstrap.packages]
+"vp:agent-browser" = "latest"
+"vp:agent-desktop" = "latest"
+
+[tasks."install:vite-plus"]
+description = "Install Vite Plus without taking over the global Node.js runtime"
+shell = "bash -c"
+run = '''
+set -euo pipefail
+if command -v vp >/dev/null 2>&1 || [ -x "$HOME/.vite-plus/bin/vp" ]; then
+  echo "Vite Plus is already installed; use vp upgrade to update it."
+  exit 0
+fi
+installer="$(mktemp)"
+trap 'rm -f "$installer"' EXIT
+curl --proto '=https' --tlsv1.2 -fsSL https://vite.plus -o "$installer"
+VP_HOME="$HOME/.vite-plus" VP_NODE_MANAGER=no bash "$installer"
+'''
+

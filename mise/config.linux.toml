@@ -49,4 +49,4 @@ login_shell = "/usr/bin/zsh"
 
 [tasks.bootstrap]
 description = "Install user-local development tools"
-depends = ["install:vite-plus", "install:vp-globals"]
+depends = ["install:vite-plus"]
