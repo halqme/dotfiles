@@ -13,6 +13,7 @@ zsh = true
 "~/.config/bunfig.toml" = { source = "~/.dotfiles/config/bun/bunfig.toml", mode = "symlink" }
 "~/.config/ghostty" = { source = "~/.dotfiles/config/ghostty", mode = "symlink" }
 "~/.config/nvim" = { source = "~/.dotfiles/config/nvim", mode = "symlink" }
+"~/.config/rex" = { source = "~/.dotfiles/config/rex", mode = "symlink" }
 "~/.config/wezterm" = { source = "~/.dotfiles/config/wezterm", mode = "symlink" }
 "~/.config/zed" = { source = "~/.dotfiles/config/zed", mode = "symlink" }
 "~/.config/zsh/.p10k.zsh" = { source = "~/.dotfiles/config/zsh/.p10k.zsh", mode = "symlink" }

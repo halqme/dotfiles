@@ -664,14 +664,18 @@
     },
     "tool_permissions": {
       "tools": {
+        "skill": {
+          "default": "allow"
+        },
         "terminal": {
           "default": "allow"
         }
       }
     },
     "default_model": {
-      "provider": "ollama",
-      "model": "beam:cloud",
+      "effort": "low",
+      "provider": "openai-subscribed",
+      "model": "gpt-6.1-terra",
       "enable_thinking": true
     },
     "dock": "right",
@@ -686,8 +690,8 @@
       "enable_thinking": false
     },
     "commit_message_model": {
-      "provider": "openai-subscribed",
-      "model": "gpt-6-luna",
+      "provider": "ollama",
+      "model": "lfm3:1.7b-mxfp8 ",
       "enable_thinking": false,
       "speed": "standard"
     },
@@ -695,9 +699,7 @@
     "commit_message_instructions": "See how a minor change to your commit message style can make you a better programmer. Use structured commit messages in the format `<type>[optional scope]: <description>`, with types such as `feat`, `fix`, and `docs`, and use `!` or `BREAKING CHANGE:` to explicitly indicate breaking changes."
   },
   "agent_servers": {
-    "pi-acp": {
-      "type": "registry"
-    }
+    
   },
   "context_servers": {},
   // DEVELOPMENT TOOLS
