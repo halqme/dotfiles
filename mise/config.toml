@@ -32,6 +32,8 @@ source "$XDG_CONFIG_HOME/zsh/zprofile.zsh"
 "~/.config/mise/miserc.toml" = { source = "~/.dotfiles/mise/miserc.toml", mode = "symlink" }
 "~/.config/mise/config.macos.toml" = { source = "~/.dotfiles/mise/config.macos.toml", mode = "symlink" }
 "~/.config/mise/config.linux.toml" = { source = "~/.dotfiles/mise/config.linux.toml", mode = "symlink" }
+"~/.fx/AGENTS.md" = { source = "~/.dotfiles/config/agents/AGENTS.md", mode = "symlink" }
+"~/.claude/CLAUDE.md" = { source = "~/.dotfiles/config/agents/AGENTS.md", mode = "symlink" }
 
 [env]
 BUN_INSTALL = "{{ env.HOME }}/.bun"

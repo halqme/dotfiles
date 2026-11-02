@@ -4,10 +4,10 @@
 
 | Component | Responsibility |
 | --- | --- |
-| `mise/config.toml` | Shared dotfiles and Zsh activation |
-| `mise/config.linux.toml` | Linux packages, Git defaults, Zsh plugins, Hermes Agent, Vite Plus |
+| `mise/config.toml` | Shared dotfiles, Zsh activation, Vite+, and global package tasks |
+| `mise/config.linux.toml` | Linux packages, Git defaults, and Zsh plugins |
 | `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, links for Nix / Home Manager |
-| `config/` | Shell, prompt, editor, and terminal configuration |
+| `config/` | Shell, prompt, editor, terminal, and global agent instructions |
 | `config/home-manager/` | Optional Home Manager configuration |
 
 Platform configs load automatically through `mise/miserc.toml`. On macOS, mise provides personal defaults for Go, Nim, and Rust; each project's `mise.toml` can select its own versions.
@@ -31,7 +31,7 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-Use **mise 2026.10.14 or newer** for `zypper:` support. Read the config and dry run before applying; bootstrap downloads and executes the official Hermes and Vite Plus installers. Use `--skip task` on the apply command to leave those applications out.
+Use **mise 2026.10.14 or newer** for `zypper:` support. Read the config and dry run before applying; bootstrap downloads and executes the official Vite+ installer, then installs the global packages declared in `config/vite-plus/globals.txt`. Use `--skip task` on the apply command to leave those applications out.
 
 The initial `MISE_CONFIG_DIR` selects both shared and platform configuration. After the links are installed, plain `mise bootstrap` loads them from `~/.config/mise`. `MISE_CONFIG_FILE` selects only one file, so do not use it for the initial platform bootstrap.
 
@@ -45,19 +45,19 @@ Log out and back in after applying. Choose a Nerd Font in your terminal for the 
 
 Git defaults on Linux include the HAL identity from `config/git/config`, delta, and Git LFS. Review the identity before applying on another person's account. SSH keys, Git signing, and credentials are not copied or generated.
 
-### Hermes Agent and Vite Plus
+### Global agent instructions and Vite+
 
-Linux bootstrap runs these tasks once the base configuration is in place:
+Bootstrap links `config/agents/AGENTS.md` to `~/.fx/AGENTS.md` and `~/.claude/CLAUDE.md`. Both platforms then run:
 
 ```sh
-mise run install:hermes
 mise run install:vite-plus
+mise run install:vp-globals
 ```
 
-- [Hermes Agent](https://hermes-agent.nousresearch.com/docs/getting-started/installation/) uses the official installer in non-interactive mode, without browser or computer-use tools. It may download managed runtimes and dependencies. Run `hermes setup` afterward to choose authentication and models; no gateway service is enabled by this bootstrap. Additional features can require native build or system dependencies.
-- [Vite Plus](https://viteplus.dev/guide/) uses the official installer under `~/.vite-plus`. Bootstrap leaves its global Node.js takeover disabled. The existing Zsh configuration sources `~/.vite-plus/env`; use `vp env on` if you want Vite Plus to own global Node.js management.
+- [Vite+](https://viteplus.dev/guide/) uses the official installer under `~/.vite-plus`. Bootstrap leaves its global Node.js takeover disabled. The existing Zsh configuration sources `~/.vite-plus/env`; use `vp env on` if you want Vite+ to own global Node.js management.
+- `config/vite-plus/globals.txt` lists packages for `vp install -g`. A bare name is installed when it is missing and is otherwise left alone. `name@version` is installed when it is missing or the installed version differs. Removing a line does not uninstall a package.
 
-Existing commands are left alone. Updates are explicit: `hermes update` and `vp upgrade`. Bootstrap neither copies tokens nor migrates conversation data.
+An existing Vite+ install is left alone. Update it with `vp upgrade`, and update global packages with `vp update -g`. Bootstrap neither copies tokens nor migrates conversation data.
 
 ## macOS setup
 
@@ -68,7 +68,7 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. The macOS task installs GUI applications and fonts through `brew bundle`. Removing a Formula from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
+Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. Bootstrap also installs Vite+, the global packages in `config/vite-plus/globals.txt`, and the GUI applications and fonts in the Brewfile. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
 
 The separate Home Manager setup is only needed for the generated Git/SSH and Nix-specific configuration used on the existing Macs:
 

@@ -49,34 +49,4 @@ login_shell = "/usr/bin/zsh"
 
 [tasks.bootstrap]
 description = "Install user-local development tools"
-depends = ["install:hermes", "install:vite-plus"]
-
-[tasks."install:hermes"]
-description = "Install Hermes Agent CLI without browser or computer-use tools"
-shell = "bash -c"
-run = '''
-set -euo pipefail
-if command -v hermes >/dev/null 2>&1 || [ -x "$HOME/.local/bin/hermes" ]; then
-  echo "Hermes is already installed; use hermes update to update it."
-  exit 0
-fi
-installer="$(mktemp)"
-trap 'rm -f "$installer"' EXIT
-curl --proto '=https' --tlsv1.2 -fsSL https://hermes-agent.nousresearch.com/install.sh -o "$installer"
-bash "$installer" --non-interactive --skip-browser --skip-computer-use
-'''
-
-[tasks."install:vite-plus"]
-description = "Install Vite Plus without taking over the global Node.js runtime"
-shell = "bash -c"
-run = '''
-set -euo pipefail
-if command -v vp >/dev/null 2>&1 || [ -x "$HOME/.vite-plus/bin/vp" ]; then
-  echo "Vite Plus is already installed; use vp upgrade to update it."
-  exit 0
-fi
-installer="$(mktemp)"
-trap 'rm -f "$installer"' EXIT
-curl --proto '=https' --tlsv1.2 -fsSL https://vite.plus -o "$installer"
-VP_HOME="$HOME/.vite-plus" VP_NODE_MANAGER=no bash "$installer"
-'''
+depends = ["install:vite-plus", "install:vp-globals"]

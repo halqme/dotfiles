@@ -21,7 +21,7 @@ show_recents = false
 mru_spaces = true
 
 [bootstrap.macos.finder]
-show_all_files =  true
+show_all_files = true
 show_pathbar = true
 show_status_bar = true
 show_extensions_warning = false
@@ -71,6 +71,11 @@ aube = "latest"
 
 [tasks.bootstrap]
 description = "Post-bootstrap machine setup"
+depends = ["install:vite-plus", "install:vp-globals", "brew-bundle"]
+
+[tasks."brew-bundle"]
+description = "Install Brewfile apps"
+shell = "bash -c"
 run = '''
 set -euo pipefail
 
