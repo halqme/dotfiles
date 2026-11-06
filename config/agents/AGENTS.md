@@ -2,6 +2,15 @@
 
 - **Git:** Keep each commit to one logical concern and follow repository commit conventions. Commits made by the Agent must disable signing for that invocation with `-c commit.gpgSign=false` and `--no-gpg-sign`.
 
+## Linear
+
+- Tasks and shared context live in Linear (workspace: halm). Linear is the source of truth, not chat.
+- Before working, read the issue (description and all comments) and the `Agent Shared Context` document.
+- Record progress, decisions with reasons, and questions as issue comments. After editing a description, add a one-line comment saying what changed.
+- End every comment with `— by <your name>`.
+- Never mark an issue Done. The human does.
+- Follow the `coordinate-in-linear` skill for the full procedure.
+
 ## Browser Use
 
 Use `agent-browser` to se and operate browser. Before the first use, run `agent-browser skills get core` and follow them.
