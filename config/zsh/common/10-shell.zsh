@@ -24,10 +24,10 @@ alias ..='cd ..'
 alias ~='cd ~'
 alias c='clear'
 alias grep='rg'
-if (( $+commands[eza] )); then
-  alias ls='eza --classify --git-repos --icons --short-nix --no-quotes --color --all --git-ignore'
-  alias ll='eza --classify --git-repos --icons --short-nix --no-quotes --color --long'
-  alias la='eza --classify --git-repos --icons --short-nix --no-quotes --color --long --all'
+if (( $+commands[lsd] )); then
+  alias ls='lsd --classify --literal --almost-all'
+  alias ll='lsd --classify --literal --long --git'
+  alias la='lsd --classify --literal --long --almost-all --git'
 else
   alias ll='ls -lh'
   alias la='ls -lah'
