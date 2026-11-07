@@ -6,12 +6,19 @@ login_shell = "/bin/zsh"
 
 [dotfiles]
 "~/.config/karabiner" = { source = "~/.dotfiles/config/karabiner", mode = "symlink" }
-"~/.config/home-manager" = { source = "~/.dotfiles/config/home-manager", mode = "symlink" }
 "~/.config/nix" = { source = "~/.dotfiles/config/nix", mode = "symlink" }
 "~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/darwin", mode = "symlink" }
 "~/.config/jj/config.toml" = { source = "~/.dotfiles/config/jj/config.toml", mode = "symlink" }
 "~/.config/nushell" = { source = "~/.dotfiles/config/nushell", mode = "symlink" }
 "~/.config/homebrew/Brewfile" = { source = "~/.dotfiles/config/homebrew/Brewfile", mode = "symlink" }
+"~/.config/direnv/direnv.toml" = { source = "~/.dotfiles/config/direnv/direnv.toml", mode = "symlink" }
+"~/.config/direnv/direnvrc" = { source = "~/.dotfiles/config/direnv/direnvrc", mode = "symlink" }
+"~/.ssh/config" = { source = "~/.dotfiles/config/ssh/config", mode = "symlink" }
+"~/.gitconfig/darwin" = { block = '''
+[include]
+    path = ~/.config/git/darwin.gitconfig
+''' }
+"~/.config/git/darwin.gitconfig" = { source = "~/.dotfiles/config/git/darwin.gitconfig", mode = "symlink" }
 
 # macOS user defaults. Applied explicitly with `mise bootstrap macos defaults apply`.
 [bootstrap.macos.dock]
@@ -39,6 +46,8 @@ three_finger_drag = true
 [tools]
 go = "latest"
 zig = "0.17.0"
+
+direnv = "latest"
 
 aube = "latest"
 

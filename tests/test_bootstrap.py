@@ -385,14 +385,14 @@ class BootstrapTests(unittest.TestCase):
         self.assert_link(".fx/AGENTS.md", "config/agents/AGENTS.md")
         self.assert_link(".claude/CLAUDE.md", "config/agents/AGENTS.md")
         self.assertFalse(self.home.joinpath(".config/nix").exists())
-        self.assertFalse(self.home.joinpath(".config/home-manager").exists())
+        self.assertFalse(self.home.joinpath(".ssh/config").exists())
+        self.assertFalse(self.home.joinpath(".config/git/darwin.gitconfig").exists())
         for key, value in {
             "alias.local": "status --short",
             "user.name": "HAL",
             "user.useConfigOnly": "true",
             "init.defaultBranch": "main",
-            "core.pager": "delta",
-            "filter.lfs.required": "true",
+            "rebase.updateRefs": "true",
         }.items():
             result = self.run_command(
                 [
@@ -405,7 +405,7 @@ class BootstrapTests(unittest.TestCase):
                 ]
             )
             self.assertEqual(result.stdout.strip(), value)
-        for key in ("commit.gpgsign", "user.signingkey"):
+        for key in ("commit.gpgsign", "user.signingkey", "core.fsmonitor"):
             self.run_command(
                 [
                     str(self.bin / "git"),
@@ -430,9 +430,29 @@ class BootstrapTests(unittest.TestCase):
     def test_macos_links_stay_platform_specific(self):
         self.bootstrap_dotfiles(selected="macos")
         self.assert_link(".config/zsh/platform", "config/zsh/darwin")
-        self.assert_link(".config/home-manager", "config/home-manager")
         self.assert_link(".config/nix", "config/nix")
-        self.assertFalse(self.home.joinpath(".config/git/dotfiles.gitconfig").exists())
+        self.assert_link(".config/git/dotfiles.gitconfig", "config/git/config")
+        self.assert_link(".config/git/darwin.gitconfig", "config/git/darwin.gitconfig")
+        self.assert_link(".ssh/config", "config/ssh/config")
+        self.assert_link(".config/direnv/direnvrc", "config/direnv/direnvrc")
+        self.assertFalse(self.home.joinpath(".config/home-manager").exists())
+        for key, value in {
+            "user.name": "HAL",
+            "core.fsmonitor": "true",
+            "commit.gpgsign": "true",
+            "gpg.format": "ssh",
+        }.items():
+            result = self.run_command(
+                [
+                    str(self.bin / "git"),
+                    "config",
+                    "--global",
+                    "--includes",
+                    "--get",
+                    key,
+                ]
+            )
+            self.assertEqual(result.stdout.strip(), value)
         self.assert_link(".fx/AGENTS.md", "config/agents/AGENTS.md")
         self.assert_link(".claude/CLAUDE.md", "config/agents/AGENTS.md")
         tasks = json.loads(self.mise("tasks", "ls", "--json", selected="macos").stdout)

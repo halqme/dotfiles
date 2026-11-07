@@ -1,18 +1,17 @@
 # dotfiles
 
-[mise bootstrap](https://mise.jdx.dev/bootstrap.html) manages packages, dotfile links, shell activation, and setup tasks. Linux can be set up without Nix or Home Manager. The macOS Home Manager configuration remains available separately.
+[mise bootstrap](https://mise.jdx.dev/bootstrap.html) manages packages, dotfile links, shell activation, and setup tasks. Nix itself is installed outside this repository and used per project (for example, `use flake` in a project's `.envrc`).
 
 | Component | Responsibility |
 | --- | --- |
-| `mise/config.toml` | Shared dotfiles, Zsh activation, Vite+, and global packages |
-| `mise/config.linux.toml` | Linux packages, Git defaults, and Zsh plugins |
-| `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, links for Nix / Home Manager |
-| `config/` | Shell, prompt, editor, terminal, and global agent instructions |
-| `config/home-manager/` | Optional Home Manager configuration |
+| `mise/config.toml` | Shared dotfiles, Git defaults, Zsh activation, Vite+, and global packages |
+| `mise/config.linux.toml` | Linux packages and Zsh plugins |
+| `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, Git signing, SSH, direnv, and Nix config links |
+| `config/` | Shell, prompt, editor, terminal, Git, SSH, direnv, and global agent instructions |
 
 Platform configs load automatically through `mise/miserc.toml`. On macOS, mise provides personal defaults for Go, Nim, and Rust; each project's `mise.toml` can select its own versions.
 
-## Linux setup (Tumbleweed, no Nix)
+## Linux setup (Tumbleweed)
 
 Run as your regular user, not root. Start with a Tumbleweed installation and a user with sudo access:
 
@@ -43,7 +42,7 @@ Bootstrap sets the login shell to `/usr/bin/zsh` on Linux and `/bin/zsh` on macO
 
 Log out and back in after applying. Choose a Nerd Font in your terminal for the existing p10k icons; for SSH, the font is configured on the client. Run `p10k configure` only if you want to change the shared prompt configuration.
 
-Git defaults on Linux include the HAL identity from `config/git/config`, delta, and Git LFS. Review the identity before applying on another person's account. SSH keys, Git signing, and credentials are not copied or generated.
+Git defaults on every platform include the HAL identity from `config/git/config`. Review the identity before applying on another person's account. SSH keys, Git signing, and credentials are not copied or generated.
 
 ### Global agent instructions and Vite+
 
@@ -65,13 +64,9 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 
 Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. Bootstrap also installs Vite+, the `vp:` global packages, and the GUI applications and fonts in the Brewfile. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
 
-The separate Home Manager setup is only needed for the generated Git/SSH and Nix-specific configuration used on the existing Macs:
+On macOS, bootstrap also links `config/git/darwin.gitconfig` (Secretive SSH signing), `~/.ssh/config`, and the direnv configuration. mise installs direnv; `config/direnv/direnvrc` adds `use_age` for age-encrypted `.env.age` files. See [`docs/git&verify.md`](docs/git&verify.md) for SSH keys and Git signing.
 
-```sh
-home-manager switch --flake ~/.dotfiles/config/home-manager#hal@MacBook-Pro.local
-```
-
-See [`docs/git&verify.md`](docs/git&verify.md) for SSH keys and Git signing. Linux does not run Home Manager or link the Nix configuration.
+Bootstrap links `config/nix` to `~/.config/nix`, which enables `nix-command` and flakes. Project toolchains belong in each project's flake.
 
 ## Updates and checks
 

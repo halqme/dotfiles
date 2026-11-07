@@ -1,0 +1,10 @@
+Include ~/.orbstack/ssh/config
+Include ~/.ssh/local_config
+
+Host *
+  Compression no
+  ForwardAgent no
+  HashKnownHosts yes
+  IdentityAgent ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+  ServerAliveCountMax 3
+  ServerAliveInterval 60

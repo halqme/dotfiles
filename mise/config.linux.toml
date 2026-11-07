@@ -6,11 +6,6 @@ login_shell = "/usr/bin/zsh"
 
 [dotfiles]
 "~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/linux", mode = "symlink" }
-"~/.gitconfig/dotfiles" = { block = '''
-[include]
-    path = ~/.config/git/dotfiles.gitconfig
-''' }
-"~/.config/git/dotfiles.gitconfig" = { source = "~/.dotfiles/config/git/config", mode = "symlink" }
 
 [bootstrap.packages]
 "apt:age" = "latest"

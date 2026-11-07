@@ -6,32 +6,45 @@
     defaultBranch = main
 [core]
     excludesfile = ~/.gitignore_global
-    pager = delta
+    untrackedCache = true
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
 [diff]
     algorithm = histogram
     colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [merge]
     conflictStyle = zdiff3
+[merge "our"]
+    driver = true
 [push]
     default = simple
     autoSetupRemote = true
+    followTags = true
 [fetch]
     prune = true
+    pruneTags = true
+    all = true
+[commit]
+    verbose = true
 [rebase]
     autoSquash = true
     autoStash = true
+    updateRefs = true
+[help]
+    autocorrect = prompt
 [rerere]
     enabled = true
-[interactive]
-    diffFilter = delta --color-only
-[filter "lfs"]
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
+    autoupdate = true
+[url "https://"]
+    insteadOf = git://
 [alias]
     st = status
     co = checkout
     br = branch
+    ci = commit -m
     unstage = reset HEAD --
     last = log -1 HEAD

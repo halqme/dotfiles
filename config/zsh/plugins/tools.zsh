@@ -51,6 +51,9 @@ if [[ -o interactive ]]; then
 fi
 
 zsh_source_if_exists "$HOME/.vite-plus/env"
-zsh_source_if_exists "$ZSH_CONFIG_ROOT/nix-env.zsh"
+
+if (( $+commands[direnv] )); then
+  zsh_source_command_cached direnv.zsh "${commands[direnv]}" direnv hook zsh
+fi
 
 return 0
