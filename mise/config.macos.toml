@@ -47,6 +47,8 @@ zig = "0.17.0"
 ruby = "latest"
 
 direnv = "latest"
+neovim = "stable"
+nushell = "latest"
 ripgrep = "latest"
 
 aube = "latest"
