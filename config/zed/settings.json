@@ -685,8 +685,8 @@
     "flexible": true,
     "default_profile": "write",
     "inline_assistant_model": {
-      "provider": "openai-subscribed",
-      "model": "gpt-6-luna",
+      "provider": "ollama",
+      "model": "lfm3:1.7b-mxfp8",
       "enable_thinking": false
     },
     "commit_message_model": {
