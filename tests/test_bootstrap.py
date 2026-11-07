@@ -436,6 +436,7 @@ class BootstrapTests(unittest.TestCase):
         self.assert_link(".ssh/config", "config/ssh/config")
         self.assert_link(".config/direnv/direnvrc", "config/direnv/direnvrc")
         self.assertFalse(self.home.joinpath(".config/home-manager").exists())
+        self.assertFalse(self.home.joinpath(".config/homebrew").exists())
         for key, value in {
             "user.name": "HAL",
             "core.fsmonitor": "true",
@@ -459,29 +460,17 @@ class BootstrapTests(unittest.TestCase):
         names = {task["name"] for task in tasks}
         self.assertIn("install:vite-plus", names)
         self.assertNotIn("install:vp-globals", names)
-        self.assertIn("brew-bundle", names)
+        self.assertNotIn("brew-bundle", names)
         self.assertNotIn("install:hermes", names)
 
-    @unittest.skipUnless(platform.system() == "Darwin", "macOS bootstrap task")
-    def test_macos_bootstrap_uses_the_linked_brewfile(self):
-        self.write_executable(
-            "brew",
-            '#!/bin/sh\nprintf \'%s\\n\' "$@" > "$TEST_RECORDS/brew-args"\n',
-        )
-        self.bootstrap_dotfiles(selected="macos")
-        self.mise("bootstrap", "--only", "task", "--yes", selected="macos")
-        self.assertEqual(
-            self.records.joinpath("brew-args").read_text().splitlines(),
-            [
-                "bundle",
-                "install",
-                "--file",
-                str(self.home / ".config/homebrew/Brewfile"),
-            ],
-        )
-
     def test_dry_run_does_not_write_managed_targets(self):
-        result = self.mise("bootstrap", "--dry-run", "--yes")
+        # Keep the real brew, brew-cask, and nix managers out of this check.
+        result = self.mise(
+            "bootstrap",
+            "--dry-run",
+            "--yes",
+            overrides={"MISE_SYSTEM_PACKAGES_MANAGERS": "vp"},
+        )
         self.assertIn(".zshrc", result.stdout + result.stderr)
         for name in (
             ".zshenv",

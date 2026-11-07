@@ -1,16 +1,14 @@
-# macOS development tool defaults and Homebrew bootstrap packages.
-# GUI applications and fonts are managed by ../config/homebrew/Brewfile via `brew bundle`.
+# macOS development tool defaults, bootstrap packages, and settings.
 
 [bootstrap.user]
 login_shell = "/bin/zsh"
 
 [dotfiles]
 "~/.config/karabiner" = { source = "~/.dotfiles/config/karabiner", mode = "symlink" }
-"~/.config/nix" = { source = "~/.dotfiles/config/nix", mode = "symlink" }
 "~/.config/zsh/platform" = { source = "~/.dotfiles/config/zsh/darwin", mode = "symlink" }
 "~/.config/jj/config.toml" = { source = "~/.dotfiles/config/jj/config.toml", mode = "symlink" }
 "~/.config/nushell" = { source = "~/.dotfiles/config/nushell", mode = "symlink" }
-"~/.config/homebrew/Brewfile" = { source = "~/.dotfiles/config/homebrew/Brewfile", mode = "symlink" }
+"~/.config/nix" = { source = "~/.dotfiles/config/nix", mode = "symlink" }
 "~/.config/direnv/direnv.toml" = { source = "~/.dotfiles/config/direnv/direnv.toml", mode = "symlink" }
 "~/.config/direnv/direnvrc" = { source = "~/.dotfiles/config/direnv/direnvrc", mode = "symlink" }
 "~/.ssh/config" = { source = "~/.dotfiles/config/ssh/config", mode = "symlink" }
@@ -46,8 +44,10 @@ three_finger_drag = true
 [tools]
 go = "latest"
 zig = "0.17.0"
+ruby = "latest"
 
 direnv = "latest"
+ripgrep = "latest"
 
 aube = "latest"
 
@@ -56,35 +56,133 @@ aube = "latest"
 "brew:bottom" = "latest"
 "brew:dust" = "latest"
 "brew:fd" = "latest"
-"brew:ffmpeg" = "latest"
 "brew:fzf" = "latest"
 "brew:fzf-tab" = "latest"
 "brew:gat" = "latest"
 "brew:gh" = "latest"
 "brew:ghq" = "latest"
-"brew:htop" = "latest"
 "brew:just" = "latest"
 "brew:lsd" = "latest"
 "brew:lazygit" = "latest"
 "brew:powerlevel10k" = "latest"
-"brew:ripgrep" = "latest"
 "brew:yazi" = "latest"
 "brew:zoxide" = "latest"
 "brew:zsh-autosuggestions" = "latest"
 "brew:zsh-completions" = "latest"
 "brew:zsh-fast-syntax-highlighting" = "latest"
 
+# Nix tooling for project flakes, installed into the user's `nix profile`.
+"nix:alejandra" = "latest"
+"nix:nil" = "latest"
+"nix:nixd" = "latest"
+"nix:comma" = "latest"
+
+# GUI applications
+"brew-cask:adguard" = "latest"
+"brew-cask:affinity" = "latest"
+"brew-cask:alienator88-sentinel" = "latest"
+"brew-cask:antinote" = "latest"
+"brew-cask:apparency" = "latest"
+"brew-cask:backdrop" = "latest"
+"brew-cask:beekeeper-studio" = "latest"
+"brew-cask:cleanmymac" = "latest"
+"brew-cask:coteditor" = "latest"
+"brew-cask:fif7y/tap/dimble" = "latest"
+"brew-cask:downie" = "latest"
+"brew-cask:firefox" = "latest"
+"brew-cask:firefox@developer-edition" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:handbrake-app" = "latest"
+"brew-cask:anomalyco/tap/hex" = "latest"
+"brew-cask:hhkb" = "latest"
+"brew-cask:ia-presenter" = "latest"
+"brew-cask:iina" = "latest"
+"brew-cask:karabiner-elements" = "latest"
+"brew-cask:keka" = "latest"
+"brew-cask:macskk" = "latest"
+"brew-cask:macwhisper" = "latest"
+"brew-cask:netnewswire" = "latest"
+"brew-cask:notion-calendar" = "latest"
+"brew-cask:obs" = "latest"
+"brew-cask:ogdesign-eagle" = "latest"
+"brew-cask:ollama-app" = "latest"
+"brew-cask:popclip" = "latest"
+"brew-cask:prismlauncher" = "latest"
+"brew-cask:rectangle-pro" = "latest"
+"brew-cask:secretive" = "latest"
+"brew-cask:shottr" = "latest"
+"brew-cask:suspicious-package" = "latest"
+"brew-cask:tailscale-app" = "latest"
+"brew-cask:tinycast" = "latest"
+"brew-cask:virtualbuddy" = "latest"
+"brew-cask:vivaldi" = "latest"
+"brew-cask:zed" = "latest"
+"brew-cask:zoom" = "latest"
+
+# Fonts
+"brew-cask:font-aoboshi-one" = "latest"
+"brew-cask:font-biz-udpgothic" = "latest"
+"brew-cask:font-biz-udpmincho" = "latest"
+"brew-cask:font-genjyuugothic" = "latest"
+"brew-cask:font-genkigothic" = "latest"
+"brew-cask:font-gensekigothic" = "latest"
+"brew-cask:font-gensenrounded" = "latest"
+"brew-cask:font-genshingothic" = "latest"
+"brew-cask:font-hachi-maru-pop" = "latest"
+"brew-cask:font-hannari" = "latest"
+"brew-cask:font-harano-aji" = "latest"
+"brew-cask:font-hina-mincho" = "latest"
+"brew-cask:font-ia-writer-duo" = "latest"
+"brew-cask:font-ia-writer-mono" = "latest"
+"brew-cask:font-ia-writer-quattro" = "latest"
+"brew-cask:font-iceberg" = "latest"
+"brew-cask:font-ipaexfont" = "latest"
+"brew-cask:font-ipafont" = "latest"
+"brew-cask:font-ipamjmincho" = "latest"
+"brew-cask:font-joti-one" = "latest"
+"brew-cask:font-just-another-hand" = "latest"
+"brew-cask:font-kaisei-decol" = "latest"
+"brew-cask:font-kaisei-harunoumi" = "latest"
+"brew-cask:font-kaisei-opti" = "latest"
+"brew-cask:font-kaisei-tokumin" = "latest"
+"brew-cask:font-kaiso" = "latest"
+"brew-cask:font-kiwi-maru" = "latest"
+"brew-cask:font-kokoro" = "latest"
+"brew-cask:font-kosugi" = "latest"
+"brew-cask:font-kosugi-maru" = "latest"
+"brew-cask:font-m-plus-1p" = "latest"
+"brew-cask:font-makinas4" = "latest"
+"brew-cask:font-mamelon" = "latest"
+"brew-cask:font-mochiy-pop-one" = "latest"
+"brew-cask:font-mochiy-pop-p-one" = "latest"
+"brew-cask:font-moralerspace" = "latest"
+"brew-cask:font-moralerspace-hw" = "latest"
+"brew-cask:font-moralerspace-jpdoc" = "latest"
+"brew-cask:font-nico-moji" = "latest"
+"brew-cask:font-noto-sans-jp" = "latest"
+"brew-cask:font-pigmo00" = "latest"
+"brew-cask:font-pigmo01" = "latest"
+"brew-cask:font-poppins" = "latest"
+"brew-cask:font-poprumcute" = "latest"
+"brew-cask:font-sawarabi-gothic" = "latest"
+"brew-cask:font-sawarabi-mincho" = "latest"
+"brew-cask:font-shippori-antique" = "latest"
+"brew-cask:font-shippori-antique-b1" = "latest"
+"brew-cask:font-shippori-mincho" = "latest"
+"brew-cask:font-shippori-mincho-b1" = "latest"
+"brew-cask:font-shizuru" = "latest"
+"brew-cask:font-shojumaru" = "latest"
+"brew-cask:font-simonetta" = "latest"
+"brew-cask:font-sora" = "latest"
+"brew-cask:font-twinkle-star" = "latest"
+"brew-cask:font-yuji-boku" = "latest"
+"brew-cask:font-yuji-hentaigana-akari" = "latest"
+"brew-cask:font-yuji-hentaigana-akebono" = "latest"
+"brew-cask:font-yuji-syuku" = "latest"
+"brew-cask:font-yusei-magic" = "latest"
+"brew-cask:font-zed-mono-nerd-font" = "latest"
+"brew-cask:font-zen-old-mincho" = "latest"
+
 [tasks.bootstrap]
 description = "Post-bootstrap machine setup"
-depends = ["install:vite-plus", "brew-bundle"]
-
-[tasks."brew-bundle"]
-description = "Install Brewfile apps"
-shell = "bash -c"
-run = '''
-set -euo pipefail
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  brew bundle install --file "$HOME/.config/homebrew/Brewfile"
-fi
-'''
+depends = ["install:vite-plus"]

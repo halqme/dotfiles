@@ -6,7 +6,7 @@
 | --- | --- |
 | `mise/config.toml` | Shared dotfiles, Git defaults, Zsh activation, Vite+, and global packages |
 | `mise/config.linux.toml` | Linux packages and Zsh plugins |
-| `mise/config.macos.toml` | Development tool defaults, Homebrew packages, macOS settings, Git signing, SSH, direnv, and Nix config links |
+| `mise/config.macos.toml` | Development tool defaults, Homebrew formulae and casks, Nix tooling, macOS settings, Git signing, SSH, direnv, and Nix config links |
 | `config/` | Shell, prompt, editor, terminal, Git, SSH, direnv, and global agent instructions |
 
 Platform configs load automatically through `mise/miserc.toml`. On macOS, mise provides personal defaults for Go, Nim, and Rust; each project's `mise.toml` can select its own versions.
@@ -62,11 +62,11 @@ MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap --dry-run
 MISE_CONFIG_DIR="$HOME/.dotfiles/mise" mise bootstrap
 ```
 
-Install the macOS development tool defaults with `mise install`. Everyday CLI tools (including aria2 and gat) and Zsh plugins remain Homebrew bootstrap packages. Bootstrap also installs Vite+, the `vp:` global packages, and the GUI applications and fonts in the Brewfile. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
+Install the macOS development tool defaults with `mise install`. Packages are chosen to keep Homebrew's dependency tree small: formulae without dependencies and Zsh plugins are `brew:` bootstrap packages, tools whose formula pulls in dependencies but which ship prebuilt binaries (ripgrep, direnv) are mise `[tools]`, and GUI applications and fonts are `brew-cask:` entries. mise installs them itself, so there is no Brewfile. Casks from third-party taps use their full name, such as `brew-cask:fif7y/tap/dimble`; mise evaluates those definitions with Ruby 3 or newer. Bootstrap also installs Vite+ and the `vp:` global packages. Removing a Formula or a global package from the configuration does not uninstall an existing copy; verify `mise which go`, `mise which nim`, and `mise which rustc` after installation before removing old Homebrew versions.
 
 On macOS, bootstrap also links `config/git/darwin.gitconfig` (Secretive SSH signing), `~/.ssh/config`, and the direnv configuration. mise installs direnv; `config/direnv/direnvrc` adds `use_age` for age-encrypted `.env.age` files. See [`docs/git&verify.md`](docs/git&verify.md) for SSH keys and Git signing.
 
-Bootstrap links `config/nix` to `~/.config/nix`, which enables `nix-command` and flakes. Project toolchains belong in each project's flake.
+Bootstrap links `config/nix` to `~/.config/nix`, which enables `nix-command` and flakes, and installs nil, nixd, and alejandra into the user's `nix profile` as `nix:` packages. The `nix:` manager needs those features, so a dry run on a new Mac fails until the link exists; run `mise bootstrap dotfiles apply` first. Project toolchains belong in each project's flake.
 
 ## Updates and checks
 
