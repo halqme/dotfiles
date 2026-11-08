@@ -650,6 +650,10 @@
     "open_router": {
       "api_url": "https://openrouter.ai/api/v1",
       "available_models": []
+    },
+    "llama.cpp": {
+      "context_window": 32000,
+      "auto_discover": true
     }
   },
   "agent": {
@@ -673,10 +677,9 @@
       }
     },
     "default_model": {
-      "effort": "low",
-      "provider": "openai-subscribed",
-      "model": "gpt-6.1-terra",
-      "enable_thinking": true
+      "provider": "llama.cpp",
+      "model": "LiquidAI/LFM3-1.7B-GGUF:Q4_0",
+      "enable_thinking": false
     },
     "dock": "right",
     "threads_sidebar": {
@@ -684,23 +687,16 @@
     },
     "flexible": true,
     "default_profile": "write",
-    "inline_assistant_model": {
-      "provider": "ollama",
-      "model": "lfm3:1.7b-mxfp8",
-      "enable_thinking": false
-    },
     "commit_message_model": {
-      "provider": "ollama",
-      "model": "lfm3:1.7b-mxfp8 ",
+      "provider": "llama.cpp",
+      "model": "LiquidAI/LFM3-Omni-2B-GGUF:Q4_0",
       "enable_thinking": false,
-      "speed": "standard"
+      "effort": "none"
     },
     "commit_message_include_project_rules": true,
     "commit_message_instructions": "See how a minor change to your commit message style can make you a better programmer. Use structured commit messages in the format `<type>[optional scope]: <description>`, with types such as `feat`, `fix`, and `docs`, and use `!` or `BREAKING CHANGE:` to explicitly indicate breaking changes."
   },
-  "agent_servers": {
-    
-  },
+  "agent_servers": {},
   "context_servers": {},
   // DEVELOPMENT TOOLS
   // Debugger
