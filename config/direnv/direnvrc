@@ -25,3 +25,26 @@ use_age() {
   rm -f "$tmp_file"
   return "$status"
 }
+
+# Load a flake dev shell without stdenv function bodies.
+# Those helpers use bash 4's `;&`, which macOS /bin/bash 3.2 cannot parse.
+# Runtime only needs the variable assignments and shellHook.
+use_flake() {
+  local layout result
+  watch_file flake.nix
+  watch_file flake.lock
+  layout="$(direnv_layout_dir)"
+  mkdir -p "$layout"
+  result="$(nix --extra-experimental-features "nix-command flakes" print-dev-env --profile "$layout/flake-profile" "$@")" || return $?
+  result="$(printf '%s\n' "$result" | awk '
+    /^[A-Za-z_][A-Za-z0-9_]* \(\)$/ { skip = 1; next }
+    skip && /^\{$/ { next }
+    skip && /^}$/ { skip = 0; next }
+    skip { next }
+    { print }
+  ')"
+  eval "$result"
+  # refresh the gcroot mtime so age-based GC (e.g. nh clean) keeps it; -h because the target is in the read-only store
+  touch -h "$layout/flake-profile"
+  nix --extra-experimental-features "nix-command flakes" profile wipe-history --profile "$layout/flake-profile"
+}
